@@ -1,5 +1,10 @@
 body    {font-family: 'メイリオ',
         'Hiragino Kaku Gothic Pro',
-        sans-serif}
+        sans-serif;
+        background-color: #fffff0}
 
 p       {line-height: 1.5}
+
+header  {background-color: #ffffff}
+
+article {background-color: #ffffff}
