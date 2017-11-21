@@ -16,7 +16,7 @@ h2            {border-left: solid 5px orange;
 
 p             {line-height: 1.5;}
 
-li            {padding-left: 10px} 
+li            {margin-left: 10px} 
 
 pre           {overflow: auto;
               white-space: pre-wrap;
