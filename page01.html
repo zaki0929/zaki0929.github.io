@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+
+<header>
+<h1>ざきのメモ</h1>
+</header>
+
+<article>
+<h1>wlan0 が見えなくなる問題</h1>
+
+<p>以下の環境だとwlan0が見えなくなり無線LANに繋がらなくなることがあります。この問題は以下の方法で解決できると思います。</p>
+                                  
+<h2>環境</h2>
+<li>Ubuntu 16.04 server</li>
+<li>Raspberry Pi 3 model B</li>
+
+<h2>解決方法</h2>
+<pre class="brush: bash; title: ; notranslate" title="">
+$ cd /lib/firmware/brcm/
+</pre>
+<pre class="brush: bash; title: ; notranslate" title="">
+$ sudo wget https://github.com/RPi-Distro/firmware-nonfree/raw/master/brcm80211/brcm/brcmfmac43430-sdio.bin -O brcmfmac43430-sdio.bin
+</pre>
+<pre class="brush: bash; title: ; notranslate" title="">
+$ sudo wget https://github.com/RPi-Distro/firmware-nonfree/raw/master/brcm80211/brcm/brcmfmac43430-sdio.txt -O brcmfmac43430-sdio.txt
+</pre>
+<pre class="brush: bash; title: ; notranslate" title="">
+$ sudo reboot
+</pre>
+
+<li><a href="index.html">トップへもどる</a></li>
+</article>
+
+<footer>
+<small>Copyright &copy; ざきのメモ, all rights reserved.</small>
+</footer>
+
+</body>
+</html>
