@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>wlan0 が見えなくなる問題 | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+
+<header>
+<h1>ざきのメモ</h1>
+</header>
+
+<article>
+<h4>2017/11/28</h4>
+<h1>ROS ナビゲーションメタパッケージのリカバリ動作を自作する</h1>
+
+<p>ROS のナビゲーションメタパッケージ（以下、ナビゲーションと呼びます）はロボットが自律移動するためのパッケージです。<br>
+ナビゲーションは自己位置推定がうまくいかないときに、リカバリ動作を行います。<br>
+このページでは、リカバリ動作を自作する方法を紹介します。</p>
+                                  
+<h2>環境</h2>
+<li>Ubuntu 16.04</li>
+<li>ROS Kinetic</li>
+
+<h2>手順</h2>
+<h3>1, ROSパッケージを作る</h3>
+<p>ナビゲーションはメタパッケージなので複数のROSパッケージから構成されています。<br>
+リカバリ動作もまたROSパッケージ単位で管理されることがほとんどです。<br>
+なので、まず自作するリカバリ動作用のROSパッケージを作成します。<br>
+今回は、go_recovery という名前で作っていきます。</p>
+<pre class="brush: bash; title: ; notranslate" title="">
+$ roscd ../src/navigation
+</pre>
+<p>依存関係には roscpp を入れておきます。</p>
+<pre class="brush: bash; title: ; notranslate" title="">
+$ catkin_create_pkg go_recovery roscpp
+</pre>
+<pre class="brush: bash; title: ; notranslate" title="">
+$ 
+</pre>
+<pre class="brush: bash; title: ; notranslate" title="">
+$ 
+</pre>
+<pre class="brush: bash; title: ; notranslate" title="">
+$ 
+</pre>
+<pre class="brush: bash; title: ; notranslate" title="">
+$ 
+</pre>
+
+<li><a href="index.html">トップへもどる</a></li>
+</article>
+
+<footer>
+<small>Copyright &copy; ざきのメモ, all rights reserved.</small>
+</footer>
+
+</body>
+</html>
