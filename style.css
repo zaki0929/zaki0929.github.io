@@ -21,16 +21,16 @@ h2            {margin-bottom: 6px;
 p             {line-height: 1.5;}
 
 li            {margin-left: 16px;} 
-/*
+
 pre           {overflow: auto;
-              white-space: pre-wrap;
-              word-wrap: break-word;
+              /*white-space: pre-wrap;
+              word-wrap: break-word;*/
               margin-top: 0;}
 
 code          {font-size: 16px;
-              line-height: 1.5;
+              /*line-height: 1.5;*/
               margin-top: 0;}
-*/
+
 header        {background-color: #ffffff;
               padding: 4px;
               margin-bottom: 30px;}
