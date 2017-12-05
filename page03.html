@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>端末を同時起動するコマンドを作る | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+</head>
+<body>
+
+<header>
+<h1>ざきのメモ</h1>
+</header>
+
+<article>
+<h4>2017/12/06</h4>
+<h1>端末を同時起動するコマンドを作る</h1>
+
+<p>このページではデスクトップ環境で端末を同時起動するコマンドの作り方を紹介します。<br>
+いやいや tmux 使えよと思う方もいると思いますが、気にせず紹介します。</p>
+                                  
+<h2>環境</h2>
+<li>Ubuntu 16.04 desktop</li>
+
+<h2>方法</h2>
+<p>今回作るコマンドの名前は、wei って名前にしておきます。特に意味はないです。</p>
+<pre class="prettyprint"><code>$ vim wei</code></pre>
+<p>エディタで以下を wei に書き込みます。<br>
+以下で記述されている数値は、環境により変わってくると思うので、最後に好みに合わせて調整するといいと思います。<br>
+gnome-terminal --geometry=サイズ+右上からの横方向の位置+右上からの縦方向の位置、というように起動する端末について設定しています。</p>
+<pre class="prettyprint"><code>#!/bin/sh
+gnome-terminal --geometry=80x50+0+0
+gnome-terminal --geometry=80x24+802+0
+gnome-terminal --geometry=80x24+802+468
+gnome-terminal --geometry=41x24+1538+0
+gnome-terminal --geometry=41x24+1538+468
+</code></pre>
+<p>パーミッションを変更します。</p>
+<pre class="prettyprint"><code>$ chmod +x wei</code></pre>
+<p>どこからでも呼び出せるようにします。</p>
+<pre class="prettyprint"><code>$ cp wei /usr/local/bin/wei</code></pre>
+<p>このままだとコマンドを打った端末が背後に残ってしまうので、.bashrc に以下のように alias を書き足します。</p>
+<pre class="prettyprint"><code>$ vim ~/.bashrc</code></pre>
+<pre class="prettyprint"><code>alias wei='wei &amp;&amp; exit' </code></pre>
+<p>最後にソースしておきます。</p>
+<pre class="prettyprint"><code>$ sourse ~/.bashrc</code></pre>
+<p>これで端末を同時起動するコマンドの完成です！あとは好みに合わせて調整してみて下さい！</p>
+
+<li><a href="index.html">トップへもどる</a></li>
+</article>
+
+<footer>
+<small>Copyright &copy; Ryo Okazaki, all rights reserved.</small>
+</footer>
+
+</body>
+</html>
