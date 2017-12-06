@@ -30,12 +30,54 @@
 <p>ナビゲーションはメタパッケージなので複数のROSパッケージから構成されています。<br>
 リカバリ動作もまたROSパッケージ単位で管理されることがほとんどです。<br>
 なので、まず自作するリカバリ動作用のROSパッケージを作成します。<br>
-今回は、go_recovery という名前で作っていきます。</p>
+今回は、go_forward_recovery という名前で直進するリカバリ動作を作っていきます。</p>
 <pre class="prettyprint"><code>$ roscd ../src/navigation</code></pre>
-<p>依存関係には roscpp を入れておきます。</p>
-<pre class="prettyprint"><code>$ catkin_create_pkg go_recovery roscpp</code></pre>
-<pre class="prettyprint"><code>$ </code></pre>
-<pre class="prettyprint"><code>$ </code></pre>
+<p>依存関係にはとりあえず roscpp を入れておきます。</p>
+<pre class="prettyprint"><code>$ catkin_create_pkg go_forward_recovery roscpp</code></pre>
+<p>はじめに、CMakeLists.txt を書き変えていきましょう。</p>
+<pre class="prettyprint"><code>$ cd go_forward_recovery
+$ vim CMakeLists.txt</code></pre>
+<pre class="prettyprint"><code>cmake_minimum_required(VERSION 2.8.3)
+project(go_forward_recovery)
+
+find_package(catkin REQUIRED
+        COMPONENTS
+            cmake_modules
+            roscpp
+            tf
+            costmap_2d
+            nav_core
+            pluginlib
+            base_local_planner
+        )
+
+find_package(Eigen REQUIRED)
+include_directories(
+    include
+    ${catkin_INCLUDE_DIRS}
+    ${EIGEN_INCLUDE_DIRS}
+)
+add_definitions(${EIGEN_DEFINITIONS})
+
+catkin_package(
+    INCLUDE_DIRS include
+    LIBRARIES go_forward_recovery
+    CATKIN_DEPENDS
+        roscpp
+        pluginlib
+)
+
+add_library(go_forward_recovery src/go_forward_recovery.cpp)
+target_link_libraries(go_forward_recovery ${catkin_LIBRARIES})
+
+install(TARGETS go_forward_recovery
+       ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+       LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+       )
+
+install(FILES recovery_plugin.xml
+    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)</code></pre>
 <pre class="prettyprint"><code>$ </code></pre>
 <pre class="prettyprint"><code>$ </code></pre>
 
