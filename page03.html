@@ -36,10 +36,10 @@ gnome-terminal --geometry=80x24+802+468
 gnome-terminal --geometry=41x24+1538+0
 gnome-terminal --geometry=41x24+1538+468
 </code></pre>
-<p>パーミッションを変更します。</p>
-<pre class="prettyprint"><code>$ chmod +x wei</code></pre>
 <p>どこからでも呼び出せるようにします。</p>
-<pre class="prettyprint"><code>$ cp wei /usr/local/bin/wei</code></pre>
+<pre class="prettyprint"><code>$ sudo cp wei /usr/local/bin/wei</code></pre>
+<p>パーミッションを変更します。</p>
+<pre class="prettyprint"><code>$ sudo chmod +x /usr/local/bin/wei</code></pre>
 <p>このままだとコマンドを打った端末が背後に残ってしまうので、.bashrc に以下のように alias を書き足します。</p>
 <pre class="prettyprint"><code>$ vim ~/.bashrc</code></pre>
 <pre class="prettyprint"><code>alias wei='wei &amp;&amp; exit' </code></pre>
