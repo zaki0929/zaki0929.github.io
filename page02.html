@@ -29,9 +29,11 @@
 <h3>1, ROSパッケージを作る</h3>
 <p>ナビゲーションはメタパッケージなので複数のROSパッケージから構成されています。<br>
 リカバリ動作もまたROSパッケージ単位で管理されることがほとんどです。<br>
-なので、まず自作するリカバリ動作用のROSパッケージを作成します。<br>
-今回は、go_forward_recovery という名前で直進するリカバリ動作を作っていきます。</p>
-<pre class="prettyprint"><code>$ roscd ../src/navigation</code></pre>
+なので、まずこの章で自作するリカバリ動作用のROSパッケージを作成します。<br>
+今回は、go_forward_recovery という名前でロボットを直進させるリカバリ動作を作っていきます。</p>
+<p>では、早速作っていきましょう。</p>
+<pre class="prettyprint"><code>$ roscd
+$ cd ../src/navigation</code></pre>
 <p>依存関係にはとりあえず roscpp を入れておきます。</p>
 <pre class="prettyprint"><code>$ catkin_create_pkg go_forward_recovery roscpp</code></pre>
 <p>はじめに、CMakeLists.txt を書き変えていきましょう。</p>
@@ -291,6 +293,12 @@ void GoForwardRecovery::runBehavior(){
 <li><a href="https://github.com/zaki0929/navigation/tree/mydev/go_forward_recovery">GitHub - zaki0929/navigation/go_forward_recovery/ </a></li>
 <li><a href="https://github.com/ros-planning/navigation/tree/kinetic-devel/rotate_recovery">GitHub - ros-planning/navigation/rotate_recovery/ </a></li>
 <h3>4, move_base 側の設定</h3>
+<p>最後に、move_base を編集していきます。</p>
+<p>まず package.xml を編集します。</p>
+<pre class="prettyprint"><code>$ rosed move_base package.xml</code></pre>
+<p>build_depend と run_depend が並んで書いてあるところに以下を書き足します。(それぞれ rotate_recovery の下辺りに書くと綺麗だと思います。)</p>
+<pre class="prettyprint"><code>&lt;build_depend&gt;go_forward_recovery&lt;/build_depend&gt;
+&lt;run_depend&gt;go_forward_recovery&lt;/run_depend&gt;</code></pre>
 <pre class="prettyprint"><code>$ </code></pre>
 <pre class="prettyprint"><code>$ </code></pre>
 
