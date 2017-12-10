@@ -121,7 +121,7 @@ install(FILES recovery_plugin.xml
 &lt;/package&gt;</code></pre>
 <p>*印がついているものはそれぞれ書き入れてみて下さい。<br>上からパッケージの概要, 著者の名前, 管理者のメールアドレスと名前を意味しています。</p>
 <h3>2, recovery_plugin.xml を書く</h3>
-<p>ナビゲーションではリカバリ動作をプラグインとして管理しています。<br>ここでは新たにリカバリ動作のプラグインを設定するための recovery_plugin.xml を書いていきます。</p>
+<p>ナビゲーションではリカバリ動作をプラグインとして管理しています。<br>ここでは新たにリカバリ動作のプラグインを設定するための recovery_plugin.xml を書きます。</p>
 <pre class="prettyprint"><code>$ vim recovery_plugin.xml</code></pre>
 <pre class="prettyprint"><code>&lt;library path="lib/libgo_forward_recovery"&gt;
   &lt;class name="go_forward_recovery/GoForwardRecovery" type="go_forward_recovery::GoForwardRecovery" base_class_type="nav_core::RecoveryBehavior"&gt;
@@ -130,7 +130,162 @@ install(FILES recovery_plugin.xml
     &lt;/description&gt;
   &lt;/class&gt;
 &lt;/library&gt;</code></pre>
-<pre class="prettyprint"><code>$ </code></pre>
+<p>このファイルにもリカバリ動作の概要を書く部分があるのですが、ここは書いておきました。自分で作りたいリカバリ動作に合わせて書き換えて下さい。<br>あと、少しだけ補足をしておくと、move_base では nav_core でリカバリ動作のプラグインを管理しているため、上記のようにクラスを定義します。</p>
+<h3>3, リカバリ動作のコードを書く</h3>
+<p>ここでやっとリカバリ動作についてコードを書きます！<br>今回は C++ で書いていきます。<br>まずはヘッダーファイルを書いていきましょう。<br>以下のようにディレクトリを作り、その中にヘッダーファイルを書きます。</p>
+<pre class="prettyprint"><code>$ mkdir -p include/go_forward_recovery
+$ vim include/go_forward_recovery/go_forward_recovery.h</code></pre>
+<pre class="prettyprint"><code>#ifndef GO_FORWARD_RECOVERY_H_
+#define GO_FORWARD_RECOVERY_H_
+#include &lt;nav_core/recovery_behavior.h&gt;
+#include &lt;costmap_2d/costmap_2d_ros.h&gt;
+#include &lt;tf/transform_listener.h&gt;
+#include &lt;ros/ros.h&gt;
+#include &lt;base_local_planner/costmap_model.h&gt;
+#include &lt;geometry_msgs/Twist.h&gt;
+#include &lt;geometry_msgs/Point.h&gt;
+#include &lt;angles/angles.h&gt;
+#include &lt;sensor_msgs/LaserScan.h&gt;
+
+#define RANGE_MAX 5.6
+
+namespace go_forward_recovery{
+  class GoForwardRecovery : public nav_core::RecoveryBehavior {
+    public:
+      GoForwardRecovery();
+
+      void initialize(std::string name, tf::TransformListener* tf, 
+          costmap_2d::Costmap2DROS* global_costmap, costmap_2d::Costmap2DROS* local_costmap);
+
+      void runBehavior();
+
+      ~GoForwardRecovery();
+
+    private:
+      costmap_2d::Costmap2DROS* global_costmap_, *local_costmap_;
+      costmap_2d::Costmap2D costmap_;
+      std::string name_;
+      tf::TransformListener* tf_;
+      ros::NodeHandle n;
+      ros::Publisher vel_pub;
+      ros::Subscriber scan_sub;
+      geometry_msgs::Twist cmd_vel;
+      bool initialized_;
+      base_local_planner::CostmapModel* world_model_;
+      double null_check(double target);
+      void scanCallback(const sensor_msgs::LaserScan::ConstPtr&amp; msg);
+      int sub_n, sub_flag;
+  };
+};
+#endif</code></pre>
+<p>次にいよいよメインのコードを書いていきます。<br>ヘッダーファイルを書いた時に気がついたかもしれませんが、今回は実用的なパッケージの作成を目指しサブスクライバとパブリッシャをリカバリ動作に仕込みます。<br>先ほどと同様に、以下のようにディレクトリを作り、その中にコードを書きます。</p>
+<pre class="prettyprint"><code>$ mkdir src
+$ vim src/go_forward_recovery.cpp</code></pre>
+<pre class="prettyprint"><code>#include &lt;go_forward_recovery/go_forward_recovery.h&gt;
+#include &lt;pluginlib/class_list_macros.h&gt;
+
+//register this planner as a RecoveryBehavior plugin
+PLUGINLIB_DECLARE_CLASS(go_forward_recovery, GoForwardRecovery, go_forward_recovery::GoForwardRecovery, nav_core::RecoveryBehavior)
+
+namespace go_forward_recovery {
+GoForwardRecovery::GoForwardRecovery(): global_costmap_(NULL), local_costmap_(NULL), 
+  tf_(NULL), initialized_(false), world_model_(NULL) {} 
+
+void GoForwardRecovery::initialize(std::string name, tf::TransformListener* tf,
+    costmap_2d::Costmap2DROS* global_costmap, costmap_2d::Costmap2DROS* local_costmap){
+  if(!initialized_){
+    name_ = name;
+    tf_ = tf;
+    global_costmap_ = global_costmap;
+    local_costmap_ = local_costmap;
+    world_model_ = new base_local_planner::CostmapModel(*local_costmap_-&gt;getCostmap());
+    initialized_ = true;
+  }else{
+    ROS_ERROR("You should not call initialize twice on this object, doing nothing");
+  }
+}
+
+GoForwardRecovery::~GoForwardRecovery(){
+  delete world_model_;
+}
+
+double GoForwardRecovery::null_check(double target){
+  if(!(target &gt; 0)){
+    target = (double)RANGE_MAX;
+    //ROS_WARN("RANGE OVER");
+  }
+  return target;
+}
+
+void GoForwardRecovery::scanCallback(const sensor_msgs::LaserScan::ConstPtr&amp; msg){
+  double center_number = (-msg-&gt;angle_min)/msg-&gt;angle_increment;
+  double center = msg-&gt;ranges[center_number];
+  double left = msg-&gt;ranges[center_number+255];
+  double right = msg-&gt;ranges[center_number-255];
+
+  center = null_check(center);
+  left = null_check(left);
+  right = null_check(right);
+
+  //ROS_INFO("center: [%lf], left: [%lf], right: [%lf]", center, left, right);
+  //ROS_INFO("center number: [%lf]", (-msg-&gt;angle_min)/msg-&gt;angle_increment);
+
+  if(center &lt; 0.5){
+    ROS_WARN("center warning!!");
+    cmd_vel.linear.x = 0.0;
+    cmd_vel.linear.y = 0.0;
+    cmd_vel.angular.z = 1.0;
+  }
+  if(left &lt; 0.4){
+    ROS_WARN("left warning!!");
+    cmd_vel.linear.x = 0.0;
+    cmd_vel.linear.y = 0.0;
+    cmd_vel.angular.z = -1.0;
+  }
+  if(right &lt; 0.4){
+    ROS_WARN("right warning!!");
+    cmd_vel.linear.x = 0.0;
+    cmd_vel.linear.y = 0.0;
+    cmd_vel.angular.z = 1.0;
+  }
+  if(center &gt;=0.5 &amp;&amp; left &gt;= 0.4 &amp;&amp; right &gt;= 0.4){
+    cmd_vel.linear.x = 0.2;
+    cmd_vel.linear.y = 0.0;
+    cmd_vel.angular.z = 0.0;
+  }
+
+  //ROS_INFO("x: %lf, y: %lf, z: %lf", cmd_vel.linear.x, cmd_vel.linear.y, cmd_vel.angular.z);
+  vel_pub.publish(cmd_vel);
+  ROS_INFO("sub_n: %d", sub_n);
+  sub_n++;
+  if(sub_n &gt; 300){
+    scan_sub.shutdown();
+    sub_flag = 0;
+    return;
+  }
+}
+
+void GoForwardRecovery::runBehavior(){
+  if(!initialized_){
+    ROS_ERROR("This object must be initialized before runBehavior is called");
+    return;
+  }
+
+  ROS_WARN("Go forward recovery behavior started.");
+  sub_n = 0;
+  sub_flag = 1;
+  scan_sub = n.subscribe("scan", 10, &amp;GoForwardRecovery::scanCallback, this);
+  vel_pub = n.advertise&lt;geometry_msgs::Twist&gt;("cmd_vel", 10);
+  while(n.ok()){
+    if(sub_flag == 0){
+      return;
+    }
+  }
+}
+};</code></pre>
+<p>またこの章では、ライセンスの記述を省いています。以下のパッケージからソースコードを参照して下さい。</p>
+<li><a href="https://github.com/zaki0929/navigation/tree/mydev/go_forward_recovery">GitHub - zaki0929/navigation/go_forward_recovery/ </a></li>
+<li><a href="https://github.com/ros-planning/navigation/tree/kinetic-devel/rotate_recovery">GitHub - ros-planning/navigation/rotate_recovery/ </a></li>
 <pre class="prettyprint"><code>$ </code></pre>
 
 
