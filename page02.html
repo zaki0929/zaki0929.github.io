@@ -80,45 +80,45 @@ install(FILES recovery_plugin.xml
 )</code></pre>
 <p>次に package.xml を書き換えましょう。</p>
 <pre class="prettyprint"><code>$ vim package.xml</code></pre>
-<pre class="prettyprint"><code><package>
-    <name>go_forward_recovery</name>
-    <version>1.12.13</version>
-    <description>
+<pre class="prettyprint"><code>&lt;package&gt;
+    &lt;name&gt;go_forward_recovery&lt;/name&gt;
+    &lt;version&gt;1.12.13&lt;/version&gt;
+    &lt;description&gt;
 
        *The description of recovery behavior. 
 
-    </description>
-    <author>Eitan Marder-Eppstein</author>
-    <author>contradict@gmail.com</author>
-    <author>*your name</author>
-    <maintainer email="*your e-mail address">*your name</maintainer>
-    <license>MIT</license>
-    <url></url>
+    &lt;/description&gt;
+    &lt;author&gt;Eitan Marder-Eppstein&lt;/author&gt;
+    &lt;author&gt;contradict@gmail.com&lt;/author&gt;
+    &lt;author&gt;*your name&lt;/author&gt;
+    &lt;maintainer email="*your e-mail address"&gt;*your name&lt;/maintainer&gt;
+    &lt;license&gt;MIT&lt;/license&gt;
+    &lt;url&gt;&lt;/url&gt;
 
-    <buildtool_depend>catkin</buildtool_depend>
+    &lt;buildtool_depend&gt;catkin&lt;/buildtool_depend&gt;
 
-    <build_depend>cmake_modules</build_depend>
-    <build_depend>roscpp</build_depend>
-    <build_depend>tf</build_depend>
-    <build_depend>costmap_2d</build_depend>
-    <build_depend>nav_core</build_depend>
-    <build_depend>pluginlib</build_depend>
-    <build_depend>eigen</build_depend>
-    <build_depend>base_local_planner</build_depend>
+    &lt;build_depend&gt;cmake_modules&lt;/build_depend&gt;
+    &lt;build_depend&gt;roscpp&lt;/build_depend&gt;
+    &lt;build_depend&gt;tf&lt;/build_depend&gt;
+    &lt;build_depend&gt;costmap_2d&lt;/build_depend&gt;
+    &lt;build_depend&gt;nav_core&lt;/build_depend&gt;
+    &lt;build_depend&gt;pluginlib&lt;/build_depend&gt;
+    &lt;build_depend&gt;eigen&lt;/build_depend&gt;
+    &lt;build_depend&gt;base_local_planner&lt;/build_depend&gt;
 
-    <run_depend>roscpp</run_depend>
-    <run_depend>tf</run_depend>
-    <run_depend>costmap_2d</run_depend>
-    <run_depend>nav_core</run_depend>
-    <run_depend>pluginlib</run_depend>
-    <run_depend>eigen</run_depend>
+    &lt;run_depend&gt;roscpp&lt;/run_depend&gt;
+    &lt;run_depend&gt;tf&lt;/run_depend&gt;
+    &lt;run_depend&gt;costmap_2d&lt;/run_depend&gt;
+    &lt;run_depend&gt;nav_core&lt;/run_depend&gt;
+    &lt;run_depend&gt;pluginlib&lt;/run_depend&gt;
+    &lt;run_depend&gt;eigen&lt;/run_depend&gt;
 
 
-    <export>
-        <nav_core plugin="${prefix}/recovery_plugin.xml" />
-    </export>
+    &lt;export&gt;
+        &lt;nav_core plugin="${prefix}/recovery_plugin.xml" /&gt;
+    &lt;/export&gt;
 
-</package></code></pre>
+&lt;/package&gt;</code></pre>
 <p>*印がついているものはそれぞれ書き入れてみて下さい。上からパッケージの概要, 著者の名前, 管理者のメールアドレスと名前です。</p>
 <pre class="prettyprint"><code>$ </code></pre>
 <pre class="prettyprint"><code>$ </code></pre>
