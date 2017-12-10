@@ -78,6 +78,48 @@ install(TARGETS go_forward_recovery
 install(FILES recovery_plugin.xml
     DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )</code></pre>
+<p>次に package.xml を書き換えましょう。</p>
+<pre class="prettyprint"><code>$ vim package.xml</code></pre>
+<pre class="prettyprint"><code><package>
+    <name>go_forward_recovery</name>
+    <version>1.12.13</version>
+    <description>
+
+       *The description of recovery behavior. 
+
+    </description>
+    <author>Eitan Marder-Eppstein</author>
+    <author>contradict@gmail.com</author>
+    <author>*your name</author>
+    <maintainer email="*your e-mail address">*your name</maintainer>
+    <license>MIT</license>
+    <url></url>
+
+    <buildtool_depend>catkin</buildtool_depend>
+
+    <build_depend>cmake_modules</build_depend>
+    <build_depend>roscpp</build_depend>
+    <build_depend>tf</build_depend>
+    <build_depend>costmap_2d</build_depend>
+    <build_depend>nav_core</build_depend>
+    <build_depend>pluginlib</build_depend>
+    <build_depend>eigen</build_depend>
+    <build_depend>base_local_planner</build_depend>
+
+    <run_depend>roscpp</run_depend>
+    <run_depend>tf</run_depend>
+    <run_depend>costmap_2d</run_depend>
+    <run_depend>nav_core</run_depend>
+    <run_depend>pluginlib</run_depend>
+    <run_depend>eigen</run_depend>
+
+
+    <export>
+        <nav_core plugin="${prefix}/recovery_plugin.xml" />
+    </export>
+
+</package></code></pre>
+<p>*印がついているものはそれぞれ書き入れてみて下さい。上からパッケージの概要, 著者の名前, 管理者のメールアドレスと名前です。</p>
 <pre class="prettyprint"><code>$ </code></pre>
 <pre class="prettyprint"><code>$ </code></pre>
 
