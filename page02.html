@@ -119,7 +119,17 @@ install(FILES recovery_plugin.xml
     &lt;/export&gt;
 
 &lt;/package&gt;</code></pre>
-<p>*印がついているものはそれぞれ書き入れてみて下さい。上からパッケージの概要, 著者の名前, 管理者のメールアドレスと名前です。</p>
+<p>*印がついているものはそれぞれ書き入れてみて下さい。<br>上からパッケージの概要, 著者の名前, 管理者のメールアドレスと名前を意味しています。</p>
+<h3>2, recovery_plugin.xml を書く</h3>
+<p>ナビゲーションではリカバリ動作をプラグインとして管理しています。<br>ここでは新たにリカバリ動作のプラグインを設定するための recovery_plugin.xml を書いていきます。</p>
+<pre class="prettyprint"><code>$ vim recovery_plugin.xml</code></pre>
+<pre class="prettyprint"><code>&lt;library path="lib/libgo_forward_recovery"&gt;
+  &lt;class name="go_forward_recovery/GoForwardRecovery" type="go_forward_recovery::GoForwardRecovery" base_class_type="nav_core::RecoveryBehavior"&gt;
+    &lt;description&gt;
+      A recovery behavior that go straight along the wall.
+    &lt;/description&gt;
+  &lt;/class&gt;
+&lt;/library&gt;</code></pre>
 <pre class="prettyprint"><code>$ </code></pre>
 <pre class="prettyprint"><code>$ </code></pre>
 
