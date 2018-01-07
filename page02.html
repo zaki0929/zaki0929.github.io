@@ -133,7 +133,7 @@ install(FILES recovery_plugin.xml
     &lt;/description&gt;
   &lt;/class&gt;
 &lt;/library&gt;</code></pre>
-<p>このファイルにもリカバリ動作の概要を書く部分があるのですが、ここは書いておきました。自分で作りたいリカバリ動作に合わせて書き換えて下さい。<br>あと、少しだけ補足をしておくと、move_base では nav_core でリカバリ動作のプラグインを管理しているため、上記のようにクラスを定義します。</p>
+<p>このファイルにもリカバリ動作の概要を書く部分があるのですが、ここは書きました。自分で作りたいリカバリ動作に合わせて書き換えて下さい。<br>あと、少しだけ補足をしておくと、move_base では nav_core でリカバリ動作のプラグインを管理しているため、上記のようにクラスを定義します。</p>
 <h3>3, リカバリ動作のコードを書く</h3>
 <p>ここでやっとリカバリ動作についてコードを書きます！<br>今回は C++ で書いていきます。<br>まずはヘッダーファイルを書いていきましょう。<br>以下のようにディレクトリを作り、その中にヘッダーファイルを書きます。</p>
 <pre class="prettyprint"><code>$ mkdir -p include/go_forward_recovery
@@ -223,8 +223,8 @@ double GoForwardRecovery::null_check(double target){
 void GoForwardRecovery::scanCallback(const sensor_msgs::LaserScan::ConstPtr&amp; msg){
   double center_number = (-msg-&gt;angle_min)/msg-&gt;angle_increment;
   double center = msg-&gt;ranges[center_number];
-  double left = msg-&gt;ranges[center_number+255];
-  double right = msg-&gt;ranges[center_number-255];
+  double left = msg-&gt;ranges[center_number+128];
+  double right = msg-&gt;ranges[center_number-128];
 
   center = null_check(center);
   left = null_check(left);
@@ -287,7 +287,7 @@ void GoForwardRecovery::runBehavior(){
 }
 };</code></pre>
 <p>では、解説をしていきます。</p>
-<p>まずリカバリ動作の概要について説明します。<br>このリカバリ動作は基本は前に真っ直ぐ進みます。 その中で /scan トピックから壁などの障害物を検知し、回転し障害物がない方向を向き、また直進するという単純な動きのリカバリ動作です。(コードもかなり荒削りです...)</p>
+<p>まずリカバリ動作の概要について説明します。<br>このリカバリ動作は基本は前に真っ直ぐ進みます。 その中で /scan トピックから壁などの障害物を検知し、回転し障害物がない方向を向き、直進するリカバリ動作です。(拙いコードですいません...)</p>
 <p>また、/scan トピックは北陽電機株式会社製の URG-04LX-UG01 の使用を想定しているため、サブスクライバについては、ご自身の環境に応じて書き換えて下さい。</p>
 <p>後日、ここにコードの解説を書きます。</p>
 <p>またこの章では、ライセンスの記述を省いています。以下のパッケージからソースコードを参照して下さい。</p>
