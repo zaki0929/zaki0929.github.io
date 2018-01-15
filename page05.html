@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="Raspberry Pi,ubuntu,linux,GitHub,git clone, 443">
+<title>443ポートで git clone | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+</head>
+<body>
+
+<header>
+<h1>ざきのメモ</h1>
+</header>
+
+<article>
+<h4>2017/11/22</h4>
+<h1>443ポートで git clone</h1>
+
+<p><br>
+</p>
+                                  
+<h2>環境</h2>
+<li>Ubuntu 16.04 server</li>
+<li>Raspberry Pi 3 model B</li>
+
+<h2>解決方法</h2>
+<pre class="prettyprint"><code>$ vim ~/.ssh/config</code></pre>
+<pre class="prettyprint"><code>Host github.com 
+    HostName ssh.github.com 
+    Port 443
+    IdentityFile ~/.ssh/id_rsa</code></pre>
+
+<li><a href="index.html">トップへもどる</a></li>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2018 Ryo Okazaki, all rights reserved.</small>
+</footer>
+
+</body>
+</html>
