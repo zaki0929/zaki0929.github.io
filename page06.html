@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="Ruby,Twitter,ubuntu,linux">
+<title>Ruby で Twitter | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+</head>
+<body>
+
+<header>
+<h1>ざきのメモ</h1>
+</header>
+
+<article>
+<h4>2018/01/16</h4>
+<h1>Ruby で Twitter</h1>
+
+<p>このページでは Ruby を使って Twitter でつぶやく方法を説明します。</p>
+ 
+<h2>環境</h2>
+<li>Ubuntu 16.04</li>
+<li>Ruby 2.5.0</li>
+
+<h2>方法</h2>
+<p>まず、作業用のディレクトリを作って、その中に移動します。</p>
+<pre class="prettyprint"><code>$ mkdir tw_bot
+$ cd tw_bot</code></pre>
+<p>Twitter のライブラリをインストールします。</p>
+<pre class="prettyprint"><code>$ gem install twitter </code></pre>
+<p>では、つぶやくためのスクリプトを記述します。</p>
+<pre class="prettyprint"><code>$ vim tw_bot.rb </code></pre>
+<pre class="prettyprint"><code>require "twitter"
+
+client = Twitter::REST::Client.new do | config |
+  config.consumer_key = "your consumer key"
+  config.consumer_secret = "your consumer secret"
+  config.access_token = "your access token"
+  config.access_token_secret = "your access token secret"
+end
+
+client.update("Hello world")
+</code></pre>
+<p>"your consumer key", "your consumer secret", "your access token", "your access token secret" の中に書く情報は<a href="https://apps.twitter.com/">このページ</a>の "Keys and Access Tokens" タブから参照できます。</p>
+<p>またコードのようにクライアントを定義した場合は、以下のようにつぶやく内容を設定できます。</p>
+<pre class="prettyprint"><code>client.update("つぶやく内容")</code></pre>
+<p>では、つぶやいてみましょう。<br>
+先ほど鍵を設定したアカウントでつぶやかれるので注意して下さい。<br>
+以下のようにスクリプトを実行するとツイートが送信されます。</p>
+<pre class="prettyprint"><code>$ ruby tw_bot.rb</code></pre>
+<p>今回はただツイートを送信しただけですが、工夫次第で面白いものが作れそうですね。</p>
+
+<h2>参考</h2>
+<a href="https://rikoroku.com/?p=534">今更ながらRubyでTwitterへ自動ツイートできるプラグラムを作ってみたので、2017年12月現在手順通りに行うだけで同じように作れる情報を共有。 &#8211; Kogawa</a>
+<p></p>
+<li><a href="index.html">トップへもどる</a></li>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2018 Ryo Okazaki, all rights reserved.</small>
+</footer>
+
+</body>
+</html>
