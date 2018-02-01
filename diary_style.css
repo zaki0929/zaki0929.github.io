@@ -48,10 +48,17 @@ header        {background-color: #ffffff;
               padding: 4px;
               margin-bottom: 30px;}
 
-#top          {width: 1100px;}
+#main         {width: 1000px;
+              margin-left: auto;
+              margin-right: auto;}
 
-main          {width: 900px;
+#top          {width: 1000px;}
+
+#articles     {width: 820px;
               float: left;}
+
+#side         {width: 80px;
+              float: right;}
 
 article       {background-color: #ffffff;
               margin-left: auto;
@@ -63,20 +70,7 @@ article       {background-color: #ffffff;
               padding-top: 20px;
               padding-bottom: 20px;}
 
-aside         {background-color: #ffffff;
-              float: right;
-              width: 80px;
-              margin-left: auto;
-              margin-right: auto;
-              margin-bottom: 30px;
-              border-radius: 10px;
-              padding-left: 30px;
-              padding-right: 30px;
-              padding-top: 20px;
-              padding-bottom: 20px;}
-
 footer        {width: 1100px;
-              float: left;
               margin-bottom: 30px;
               margin-left: auto;
               margin-right: auto;}
