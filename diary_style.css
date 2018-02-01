@@ -47,10 +47,12 @@ header        {background-color: #ffffff;
               padding: 4px;
               margin-bottom: 30px;}
 
-main          {float: left;}
+head          {width: 900px;}
+
+main          {width: 600px;
+              float: left;}
 
 article       {background-color: #ffffff;
-              width: 900px;
               margin-left: auto;
               margin-right: auto;
               margin-bottom: 30px;
@@ -62,7 +64,7 @@ article       {background-color: #ffffff;
 
 aside         {background-color: #ffffff;
               float: right;
-              width: 250px;
+              width: 200px;
               margin-left: auto;
               margin-right: auto;
               margin-bottom: 30px;
