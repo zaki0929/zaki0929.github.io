@@ -47,7 +47,7 @@ header        {background-color: #ffffff;
               padding: 4px;
               margin-bottom: 30px;}
 
-head          {width: 900px;}
+#top          {width: 900px;}
 
 main          {width: 600px;
               float: left;}
