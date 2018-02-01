@@ -47,8 +47,9 @@ header        {background-color: #ffffff;
               padding: 4px;
               margin-bottom: 30px;}
 
+main          {float: left;}
+
 article       {background-color: #ffffff;
-              float: left;
               width: 900px;
               margin-left: auto;
               margin-right: auto;
