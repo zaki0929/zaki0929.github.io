@@ -50,7 +50,7 @@ header        {background-color: #ffffff;
 
 #top          {width: 900px;}
 
-main          {width: 600px;
+main          {width: 650px;
               float: left;}
 
 article       {background-color: #ffffff;
@@ -76,6 +76,7 @@ aside         {background-color: #ffffff;
               padding-bottom: 20px;}
 
 footer        {width: 900px;
+              float: left;
               margin-bottom: 30px;
               margin-left: auto;
               margin-right: auto;}
