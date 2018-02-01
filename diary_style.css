@@ -2,13 +2,13 @@ body          {font-family: 'メイリオ',
               'Hiragino Kaku Gothic Pro',
               sans-serif;
               background-color: #d3d3d3;
-              width: 900px;
+              width: 1100px;
               margin: 0;}
 
 h1            {margin-top: 0;
               margin-bottom: 0;}
 
-header h1     {width: 900px;
+header h1     {width: 1100px;
               margin-left: auto;
               margin-right: auto;}
 
@@ -48,9 +48,9 @@ header        {background-color: #ffffff;
               padding: 4px;
               margin-bottom: 30px;}
 
-#top          {width: 900px;}
+#top          {width: 1100px;}
 
-main          {width: 700px;
+main          {width: 950px;
               float: left;}
 
 article       {background-color: #ffffff;
@@ -75,7 +75,7 @@ aside         {background-color: #ffffff;
               padding-top: 20px;
               padding-bottom: 20px;}
 
-footer        {width: 900px;
+footer        {width: 1100px;
               float: left;
               margin-bottom: 30px;
               margin-left: auto;
