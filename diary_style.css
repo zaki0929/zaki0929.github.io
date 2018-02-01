@@ -50,7 +50,7 @@ header        {background-color: #ffffff;
 
 #top          {width: 900px;}
 
-main          {width: 620px;
+main          {width: 700px;
               float: left;}
 
 article       {background-color: #ffffff;
@@ -65,7 +65,7 @@ article       {background-color: #ffffff;
 
 aside         {background-color: #ffffff;
               float: right;
-              width: 200px;
+              width: 80px;
               margin-left: auto;
               margin-right: auto;
               margin-bottom: 30px;
