@@ -48,7 +48,20 @@ header        {background-color: #ffffff;
               margin-bottom: 30px;}
 
 article       {background-color: #ffffff;
+              float: left;
               width: 900px;
+              margin-left: auto;
+              margin-right: auto;
+              margin-bottom: 30px;
+              border-radius: 10px;
+              padding-left: 30px;
+              padding-right: 30px;
+              padding-top: 20px;
+              padding-bottom: 20px;}
+
+aside         {background-color: #ffffff;
+              float: right;
+              width: 250px;
               margin-left: auto;
               margin-right: auto;
               margin-bottom: 30px;
