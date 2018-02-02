@@ -47,16 +47,16 @@ header        {background-color: #ffffff;
               padding: 4px;
               margin-bottom: 30px;}
 
-#main         {width: 900px;
+.main         {width: 900px;
               margin-left: auto;
               margin-right: auto;}
 
-#top          {width: 900px;}
+.top          {width: 900px;}
 
-#articles     {width: 750px;
+.articles     {width: 750px;
               float: left;}
 
-#side         {width: 120px;
+.side         {width: 120px;
               float: right;}
 
 .wrap         {overflow: hidden;}
