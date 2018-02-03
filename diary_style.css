@@ -61,9 +61,10 @@ header        {background-color: #ffffff;
 
 .wrap         {overflow: hidden;}
 
-.fixing-base .fixing-box.fixed {position: fixed;
-                                top: 0;
-                                z-index: 9999;}
+.fixed        {position: fixed;
+               top: 0;
+               width: 100%;
+               z-index: 10000;}
 
 article       {background-color: #ffffff;
               margin-left: auto;
