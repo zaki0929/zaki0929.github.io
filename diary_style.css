@@ -57,6 +57,7 @@ header        {background-color: #ffffff;
               float: left;}
 
 .side         {width: 120px;
+              position: fixed;
               float: right;}
 
 .wrap         {overflow: hidden;}
