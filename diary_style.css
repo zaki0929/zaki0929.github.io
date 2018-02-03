@@ -62,9 +62,7 @@ header        {background-color: #ffffff;
 .wrap         {overflow: hidden;}
 
 .fix          {position: fixed;
-              top: 0;
-              width: 100%;
-              z-index: 10000;}
+              width: 100%;}
 
 article       {background-color: #ffffff;
               margin-left: auto;
