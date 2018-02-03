@@ -57,15 +57,14 @@ header        {background-color: #ffffff;
               float: left;}
 
 .side         {width: 120px;
-              float: right;
-              position: fixed;}
+              float: right;}
 
 .wrap         {overflow: hidden;}
 
-.fixed        {position: fixed;
-               top: 0;
-               width: 100%;
-               z-index: 10000;}
+.fix          {position: fixed;
+              top: 0;
+              width: 100%;
+              z-index: 10000;}
 
 article       {background-color: #ffffff;
               margin-left: auto;
