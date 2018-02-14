@@ -11,6 +11,8 @@ header h1     {width: 900px;
               margin-left: auto;
               margin-right: auto;}
 
+header a      {text-decoration: none;}
+
 article h1    {border-bottom: solid 5px orange;}
 
 h2            {margin-bottom: 6px;
