@@ -25,8 +25,10 @@
 このページでは、リカバリ動作を自作する方法を紹介します。</p>
                                   
 <h2>環境</h2>
+<ul>
 <li>Ubuntu 16.04</li>
 <li>ROS Kinetic</li>
+</ul>
 
 <h2>手順</h2>
 <h3>1, ROSパッケージを作る</h3>
@@ -293,8 +295,10 @@ void GoForwardRecovery::runBehavior(){
 <p>また、/scan トピックは北陽電機株式会社製の URG-04LX-UG01 の使用を想定しているため、サブスクライバについては、ご自身の環境に応じて書き換えて下さい。</p>
 <p>後日、ここにコードの解説を書きます。</p>
 <p>またこの章では、ライセンスの記述を省いています。以下のパッケージからソースコードを参照して下さい。</p>
+<ul>
 <li><a href="https://github.com/zaki0929/navigation/tree/mydev/go_forward_recovery">GitHub - zaki0929/navigation/go_forward_recovery/ </a></li>
 <li><a href="https://github.com/ros-planning/navigation/tree/kinetic-devel/rotate_recovery">GitHub - ros-planning/navigation/rotate_recovery/ </a></li>
+</ul>
 <h3>4, move_base 側の設定</h3>
 <p>この章では、move_base を編集していきます。<br>この章が終われば、作ったリカバリ動作がちゃんと組み込まれるようになるはずです。</p>
 <p>ではまず package.xml を編集しましょう。</p>
@@ -322,7 +326,9 @@ recovery_behaviors_.push_back(go_forward);</code></pre>
 $ cd ..
 $ catkin_make</code></pre>
 <p></p>
+<ul>
 <li><a href="index.html">トップへもどる</a></li>
+</ul>
 </article>
 
 <footer>
