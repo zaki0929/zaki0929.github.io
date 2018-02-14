@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="ROS,rosbag">
+<title>rosbag のメモ | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+</head>
+<body>
+
+<header>
+<h1>ざきのメモ</h1>
+</header>
+
+<article>
+<h4>2018/02/14</h4>
+<h1>rosbag のメモ</h1>
+
+<p>このページでは rosbag の自分がよく使うコマンドをまとめています。</p>
+ 
+<h2>環境</h2>
+<li>Ubuntu 16.04</li>
+<li>Kinetic</li>
+
+<h2>記録</h2>
+<p>指定したトピックを記録</p>
+<pre class="prettyprint"><code>$ rosbag record -O &lt;your bagfile name&gt; &lt;target topic&gt;</code></pre>
+<p>実用例</p>
+<pre class="prettyprint"><code>$ rosbag record -O bagfile /odom /scan /cmd_vel /tf</code></pre>
+
+<h2>再生</h2>
+<p>最初から最後まで再生</p>
+<pre class="prettyprint"><code>$ rosbag play &lt;your bagfile&gt;</code></pre>
+<p>実用例</p>
+<pre class="prettyprint"><code>$ rosbag play bagfile.bag</code></pre>
+<p>最初から60秒間再生</p>
+<pre class="prettyprint"><code>$ rosbag play -u 60 &lt;your bagfile&gt;</code></pre>
+<p>開始60秒後から再生</p>
+<pre class="prettyprint"><code>$ rosbag play -s 60 &lt;your bagfile&gt;</code></pre>
+
+<h2>編集</h2>
+<p>指定した時間まで切り取り出力</p>
+<pre class="prettyprint"><code>$ rosbag filter input.bag output.bug "t.secs &lt; &lt;UNIX time&gt;"</code></pre>
+<p>実用例</p>
+<pre class="prettyprint"><code>$ rosbag filter bagfile.bag bagfile_before60sec.bag "t.secs &lt; 1518574082.00"</code></pre>
+<p>不等号を書き換えれば他の範囲を指定することもできます。</p>
+<p>また、ここで使う UNIX time は以下のように確認できます。</p>
+<pre class="prettyprint"><code>$ rosbag info bagfile.bag"</code></pre>
+<p>例えば、開始してから60秒後の時間は、start欄に書いている UNIX time に60を足した数字などと計算して確認することができます。</p>
+
+<h2>参考</h2>
+<a href="https://answers.ros.org/question/99711/how-to-split-a-recorded-rosbag-file/">How to split a recorded rosbag file ? - ROS Answers: Open Source Q&amp;A Forum</a>
+<p></p>
+<li><a href="index.html">トップへもどる</a></li>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2018 Ryo Okazaki, all rights reserved.</small>
+</footer>
+
+</body>
+</html>
