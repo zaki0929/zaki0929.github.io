@@ -2,6 +2,7 @@ body          {font-family: 'メイリオ',
               'Hiragino Kaku Gothic Pro',
               sans-serif;
               background-color: #d3d3d3;
+              color: #1C1C1C;
               margin: 0;}
 
 h1            {margin-top: 0;
@@ -14,7 +15,7 @@ header h1     {width: 900px;
 header a      {text-decoration: none;}
 header a:link     {color: #1C1C1C;}
 header a:visited  {color: #1C1C1C;}
-header a:hover    {color: #2E2E2E;}
+header a:hover    {color: #585858;}
 
 article h1    {border-bottom: solid 5px orange;}
 
