@@ -14,7 +14,6 @@ header h1     {width: 900px;
 article h1    {border-bottom: solid 5px orange;}
 
 h2            {margin-bottom: 6px;
-              margin-top: 0;
               font-size: 20px;
               border-left: solid 5px orange;
               padding-left: 4px;}
@@ -55,6 +54,8 @@ header        {background-color: #ffffff;
 
 .articles     {width: 750px;
               float: left;}
+
+.articles h2  {margin-top: 0;}
 
 .side         {width: 120px;
               float: right;}
