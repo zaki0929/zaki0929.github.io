@@ -84,6 +84,7 @@ article       {background-color: #ffffff;
               padding-bottom: 20px;}
 
 footer        {width: 900px;
+              float: left;
               margin-top: -25px;
               margin-bottom: 30px;
               margin-left: auto;
