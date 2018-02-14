@@ -28,7 +28,9 @@ h4            {margin-top: 0;
 
 p             {line-height: 1.5;}
 
-ul            {padding-left: 40px;} 
+ul            {padding-left: 40px; 
+              padding-bottom: 0px; 
+              margin-bottom: 0px;} 
 
 pre           {overflow: auto;
               background-color: #333333;
