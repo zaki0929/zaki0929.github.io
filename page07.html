@@ -49,7 +49,7 @@
 <pre class="prettyprint"><code>$ rosbag filter bagfile.bag bagfile_before60sec.bag "t.secs &lt; 1518574082.00"</code></pre>
 <p>不等号を書き換えれば他の範囲を指定することもできます。</p>
 <p>また、ここで使う UNIX time は以下のように確認できます。</p>
-<pre class="prettyprint"><code>$ rosbag info bagfile.bag"</code></pre>
+<pre class="prettyprint"><code>$ rosbag info bagfile.bag</code></pre>
 <p>例えば、開始してから60秒後の時間は、start欄に書いている UNIX time に60を足した数字などと計算して確認することができます。</p>
 
 <h2>参考</h2>
