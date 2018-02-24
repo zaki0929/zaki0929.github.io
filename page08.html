@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="ubuntu,linux,openFrameworks">
+<title>openFrameworks のインストールから新規プロジェクトの作成まで | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2018/02/24</h4>
+<h1>openFrameworks のインストールから新規プロジェクトの作成まで</h1>
+
+<p>このページでは Ubuntu で openFrameworks のインストールから新規プロジェクトの作成までの手順をまとめます。</p>
+ 
+<h2>環境</h2>
+<ul>
+<li>Ubuntu 16.04 (64-bit)</li>
+</ul>
+
+<h2>インストール</h2>
+<p>手順をざっと書きます。</p>
+<pre class="prettyprint"><code>$ wget http://openframeworks.cc/versions/v0.9.8/of_v0.9.8_linux64_release.tar.gz
+$ tar xvfz of_v0.9.8_linux64_release.tar.gz
+$ mv of_v0.9.8_linux64_release of_v0.9.8_linux64
+$ cd of_v0.9.8_linux64/scripts/linux/ubuntu
+$ sudo ./install_dependencies.sh
+$ sudo ./install_codecs.sh
+$ cd of_v0.9.8_linux64/scripts/linux
+$ ./compileOF.sh -j3
+$ sudo apt-get install -y qtcreator eclipse
+$ cd of_v0.9.8_linux64/scripts/linux
+$ ./compilePG.sh</code></pre>
+<p>以上がインストールの手順になります。</p>
+
+<h2>新規プロジェクトの作成</h2>
+<p>では環境が整ったので、新規プロジェクトを作成してみましょう。</p>
+<p>とりあえずディレクトリを移動します。</p>
+<pre class="prettyprint"><code>$ cd ~/of_v0.9.8_linux64/projectGenerator-linux64</code></pre>
+<pre class="prettyprint"><code>
+<p>このディレクトリにある、projectGenerator を実行することでプロジェクトを作ることができます。</p>
+<p>では実行してみましょう。</p>
+$ ./projectGenerator</code></pre>
+<p>GUI が立ち上がったはずです。<br>
+Project name 欄には今から作成するプロジェクトの名前を、Addons 欄にはプロジェクトで使用したいアドオンを入力します。<br>
+入力が終わったら Generate ボタンを押しましょう。<br>
+これでプロジェクトが作成されたはずです。</p>
+<p>では、今作ったプロジェクトを確認しにいきましょう。</p>
+<pre class="prettyprint"><code>$ cd ~/of_v0.9.8_linux64/apps/myApps
+$ ls</code></pre>
+<p>さっき作ったプロジェクトの名前のディレクトリができているはずです。<br>
+プロジェクトの開発をする際はこのディレクトリ内で作業をします。</p>
+<p>またプロジェクトの実行は、プロジェクトのディレクトリ内で以下のように make することで行うことができます。</p>
+<pre class="prettyprint"><code>$ make
+$ make run</code></pre>
+<p>これで以上になります。あとは開発するのみです！openFrameworks を楽しみましょう！</p>
+
+<h2>参考</h2>
+<a href="https://qiita.com/nnn112358/items/b6834379e2eeeeae6793">UbuntuでopenFrameworksの開発環境を構築する。 - Qiita</a>
+<p></p>
+<ul>
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2018 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
