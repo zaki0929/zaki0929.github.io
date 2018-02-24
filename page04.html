@@ -20,17 +20,17 @@
 <h4>2017/12/13</h4>
 <h1>便利なエイリアス</h1>
 
-<p>このページでは Linux 環境で私が使用している、便利なエイリアスを紹介します。</p>
-<p>以下で紹介するものを .bashrc に書き加えることで使用することができます。</p>
+<p>このページでは Linux 環境で私が使用している、便利なエイリアスを紹介します。<br>
+以下で紹介するものを .bashrc に書き加えることで使用することができます。</p>
 
 <h2>どこでも catkin_make</h2>
-<p>これを書いておくとどこでもcatkin_makeできるようになります。</p>
-<p>しかし、catkin_make --pkg などオプションを使う場合は他に工夫が必要になります...。</p>
+<p>これを書いておくとどこでもcatkin_makeできるようになります。<br>
+しかし、catkin_make --pkg などオプションを使う場合は他に工夫が必要になります...。</p>
 <pre class="prettyprint"><code>alias catkin_make='cd ~/catkin_ws &amp;&amp; catkin_make &amp;&amp; cd -'</code></pre>
 
 <h2>らくらく nmap</h2>
-<p>これを書いておくと、すぐに nmap を使ってネットワーク上のホスト名と、アドレスをあぶり出すことができます。</p>
-<p>ssh で繋ぐ前などに使うと便利です。</p>
+<p>これを書いておくと、すぐに nmap を使ってネットワーク上のホスト名と、アドレスをあぶり出すことができます。<br>
+ssh で繋ぐ前などに使うと便利です。</p>
 <p>研究室で使う場合を勝手に想定して名前を nmaplab にしておきます。</p>
 <p>IP address : xxx.xx.xx.ooo</p>
 <pre class="prettyprint"><code>alias nmaplab='nmap -sL xxx.xx.xx.0/24'</code></pre>

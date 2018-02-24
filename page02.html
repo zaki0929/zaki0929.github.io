@@ -20,9 +20,9 @@
 <h4>2017/12/11</h4>
 <h1>ROS ナビゲーションメタパッケージのリカバリ動作を自作する</h1>
 
-<p>ROS のナビゲーションメタパッケージ（以下、ナビゲーションと呼びます）はロボットが自律移動するためのパッケージです。</p>
-<p>ナビゲーションは自己位置推定がうまくいかないときに、リカバリ動作を行います。</p>
-<p>このページでは、リカバリ動作を自作する方法を紹介します。</p>
+<p>ROS のナビゲーションメタパッケージ（以下、ナビゲーションと呼びます）はロボットが自律移動するためのパッケージです。<br>
+ナビゲーションは自己位置推定がうまくいかないときに、リカバリ動作を行います。<br>
+このページでは、リカバリ動作を自作する方法を紹介します。</p>
                                   
 <h2>環境</h2>
 <ul>
@@ -32,10 +32,10 @@
 
 <h2>手順</h2>
 <h3>1, ROSパッケージを作る</h3>
-<p>ナビゲーションはメタパッケージなので複数のROSパッケージから構成されています。</p>
-<p>リカバリ動作もまたROSパッケージ単位で管理されることがほとんどです。</p>
-<p>なので、まずこの章で自作するリカバリ動作用のROSパッケージを作成します。</p>
-<p>今回は、go_forward_recovery という名前でロボットを直進させるリカバリ動作を作っていきます。</p>
+<p>ナビゲーションはメタパッケージなので複数のROSパッケージから構成されています。<br>
+リカバリ動作もまたROSパッケージ単位で管理されることがほとんどです。<br>
+なので、まずこの章で自作するリカバリ動作用のROSパッケージを作成します。<br>
+今回は、go_forward_recovery という名前でロボットを直進させるリカバリ動作を作っていきます。</p>
 <p>では、早速作っていきましょう。</p>
 <pre class="prettyprint"><code>$ roscd
 $ cd ../src/navigation</code></pre>
@@ -126,11 +126,11 @@ install(FILES recovery_plugin.xml
     &lt;/export&gt;
 
 &lt;/package&gt;</code></pre>
-<p>*印がついているものはそれぞれ書き入れてみて下さい。</p>
-<p>上からパッケージの概要, 著者の名前, 管理者のメールアドレスと名前を意味しています。</p>
+<p>*印がついているものはそれぞれ書き入れてみて下さい。<br>
+上からパッケージの概要, 著者の名前, 管理者のメールアドレスと名前を意味しています。</p>
 <h3>2, recovery_plugin.xml を書く</h3>
-<p>ナビゲーションではリカバリ動作をプラグインとして管理しています。</p>
-<p>ここでは新たにリカバリ動作のプラグインを設定するための recovery_plugin.xml を書きます。</p>
+<p>ナビゲーションではリカバリ動作をプラグインとして管理しています。<br>
+ここでは新たにリカバリ動作のプラグインを設定するための recovery_plugin.xml を書きます。</p>
 <pre class="prettyprint"><code>$ vim recovery_plugin.xml</code></pre>
 <pre class="prettyprint"><code>&lt;library path="lib/libgo_forward_recovery"&gt;
   &lt;class name="go_forward_recovery/GoForwardRecovery" type="go_forward_recovery::GoForwardRecovery" base_class_type="nav_core::RecoveryBehavior"&gt;
@@ -139,12 +139,12 @@ install(FILES recovery_plugin.xml
     &lt;/description&gt;
   &lt;/class&gt;
 &lt;/library&gt;</code></pre>
-<p>このファイルにもリカバリ動作の概要を書く部分があるのですが、ここは書きました。自分で作りたいリカバリ動作に合わせて書き換えて下さい。</p>
-<p>あと、少しだけ補足をしておくと、move_base では nav_core でリカバリ動作のプラグインを管理しているため、上記のようにクラスを定義します。</p>
+<p>このファイルにもリカバリ動作の概要を書く部分があるのですが、ここは書きました。自分で作りたいリカバリ動作に合わせて書き換えて下さい。<br>
+あと、少しだけ補足をしておくと、move_base では nav_core でリカバリ動作のプラグインを管理しているため、上記のようにクラスを定義します。</p>
 <h3>3, リカバリ動作のコードを書く</h3>
-<p>ここでやっとリカバリ動作についてコードを書きます！</p>
-<p>今回は C++ で書いていきます。</p>
-<p>まずはヘッダーファイルを書いていきましょう。</p>
+<p>ここでやっとリカバリ動作についてコードを書きます！<br>
+今回は C++ で書いていきます。<br>
+まずはヘッダーファイルを書いていきましょう。</p>
 <p>以下のようにディレクトリを作り、その中にヘッダーファイルを書きます。</p>
 <pre class="prettyprint"><code>$ mkdir -p include/go_forward_recovery
 $ vim include/go_forward_recovery/go_forward_recovery.h</code></pre>
@@ -191,8 +191,8 @@ namespace go_forward_recovery{
   };
 };
 #endif</code></pre>
-<p>次にいよいよメインのコードを書いていきます。</p>
-<p>ヘッダーファイルを書いた時に気がついたかもしれませんが、今回は実用的なパッケージの作成を目指しサブスクライバとパブリッシャをリカバリ動作に仕込みます。</p>
+<p>次にいよいよメインのコードを書いていきます。<br>
+ヘッダーファイルを書いた時に気がついたかもしれませんが、今回は実用的なパッケージの作成を目指しサブスクライバとパブリッシャをリカバリ動作に仕込みます。</p>
 <p>先ほどと同様に、以下のようにディレクトリを作り、その中にコードを書きます。</p>
 <pre class="prettyprint"><code>$ mkdir src
 $ vim src/go_forward_recovery.cpp</code></pre>
@@ -299,10 +299,10 @@ void GoForwardRecovery::runBehavior(){
 }
 };</code></pre>
 <p>では、解説をしていきます。</p>
-<p>まずリカバリ動作の概要について説明します。</p>
-<p>このリカバリ動作は基本は前に真っ直ぐ進みます。</p>
-<p>その中で /scan トピックから壁などの障害物を検知し、回転し障害物がない方向を向き、直進するリカバリ動作です。(拙いコードですみません...)</p>
-<p>また、/scan トピックは北陽電機株式会社製の URG-04LX-UG01 の使用を想定しているため、サブスクライバについては、ご自身の環境に応じて書き換えて下さい。</p>
+<p>まずリカバリ動作の概要について説明します。<br>
+このリカバリ動作は基本は前に真っ直ぐ進みます。<br>
+その中で /scan トピックから壁などの障害物を検知し、回転し障害物がない方向を向き、直進するリカバリ動作です。(拙いコードですみません...)<br>
+また、/scan トピックは北陽電機株式会社製の URG-04LX-UG01 の使用を想定しているため、サブスクライバについては、ご自身の環境に応じて書き換えて下さい。</p>
 <p>後日、ここにコードの解説を書きます。</p>
 <p>またこの章では、ライセンスの記述を省いています。以下のパッケージからソースコードを参照して下さい。</p>
 <ul>
@@ -310,8 +310,8 @@ void GoForwardRecovery::runBehavior(){
 <li><a href="https://github.com/ros-planning/navigation/tree/kinetic-devel/rotate_recovery">GitHub - ros-planning/navigation/rotate_recovery/ </a></li>
 </ul>
 <h3>4, move_base 側の設定</h3>
-<p>この章では、move_base を編集していきます。</p>
-<p>この章が終われば、作ったリカバリ動作がちゃんと組み込まれるようになるはずです。</p>
+<p>この章では、move_base を編集していきます。<br>
+この章が終われば、作ったリカバリ動作がちゃんと組み込まれるようになるはずです。</p>
 <p>ではまず package.xml を編集しましょう。</p>
 <pre class="prettyprint"><code>$ rosed move_base package.xml</code></pre>
 <p>build_depend と run_depend が並んで書いてあるところに以下を書き足します。<br>(それぞれ rotate_recovery の下辺りに書くと綺麗だと思います。)</p>
@@ -319,14 +319,15 @@ void GoForwardRecovery::runBehavior(){
 &lt;run_depend&gt;go_forward_recovery&lt;/run_depend&gt;</code></pre>
 <p>次に、move_base.cpp を編集します。</p>
 <pre class="prettyprint"><code>$ rosed move_base move_base.cpp</code></pre>
-<p>このコードの void MoveBase::loadDefaultRecoveryBehaviors() 内を編集します。(いじってなければ1130行目辺りにあるはずです。)</p>
-<p>まず、この関数のtry{}の中に以下を書き加えます。</p>
+<p>このコードの void MoveBase::loadDefaultRecoveryBehaviors() 内を編集します。(いじってなければ1130行目辺りにあるはずです。)<br>
+まず、この関数のtry{}の中に以下を書き加えます。</p>
 <pre class="prettyprint"><code>boost::shared_ptr&lt;nav_core::RecoveryBehavior&gt; go_forward(recovery_loader_.createInstance("go_forward_recovery/GoForwardRecovery"));
 go_forward-&gt;initialize("go_forward_recovery", &amp;tf_, planner_costmap_ros_, controller_costmap_ros_);</code></pre>
 <p>ここまで終わればこっちのもんです。あとは好きなようにリカバリ動作を組み合わせていきましょう。</p>
 <p>以下の一行を、先ほど書いたものの下に書けばリカバリ動作を組み込むことができます。</p>
 <pre class="prettyprint"><code>recovery_behaviors_.push_back(go_forward);</code></pre>
-<p>デフォルトだとcons_clear, rotate, ags_clear, rotate の順番にリカバリ動作が組み込まれていると思いますが、<br>これを例えば、cons_clear, rotate, go_forward, ags_clear, rotate, go_forward の順番にしたいとしたら以下のように書きます。</p>
+<p>デフォルトだとcons_clear, rotate, ags_clear, rotate の順番にリカバリ動作が組み込まれていると思いますが、<br>
+これを例えば、cons_clear, rotate, go_forward, ags_clear, rotate, go_forward の順番にしたいとしたら以下のように書きます。</p>
 <pre class="prettyprint"><code>recovery_behaviors_.push_back(cons_clear);
 recovery_behaviors_.push_back(rotate);
 recovery_behaviors_.push_back(go_forward);
