@@ -49,6 +49,7 @@ code          {font-size: 16px;
 
 header        {background-color: #ffffff;
               padding: 4px;
+              border-bottom: solid thin;
               margin-bottom: 30px;}
 
 header a      {text-decoration: none;
