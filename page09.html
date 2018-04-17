@@ -47,7 +47,7 @@ RUN apt-get update &amp;&amp; apt-get install -y \
 <h2>ROS tutorial を動かす</h2>
 <p>まず通信用のネットワークを作ります。</p>
 <pre class="prettyprint"><code>$ docker network create ros</code></pre>
-<p>roscore を起動します。</p>
+<p>それでは、まず roscore を起動しましょう。</p>
 <pre class="prettyprint"><code>$ docker run -it --rm \
 --net=ros \
 --name master \
