@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="Docker,ROS,linux">
+<title>Docker で ROS を動かしてみる | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<script type="text/javascript" src="vimlike.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2018/04/17</h4>
+<h1>Docker で ROS を動かしてみる</h1>
+
+<p>このページでは Docker で ROS のチュートリアルを動かすまでをまとめています。</p>
+ 
+<h2>環境</h2>
+<ul>
+<li>Docker 18.03.0-ce</li>
+</ul>
+
+<h2>Dockerfile の記述とコンテナイメージのビルド</h2>
+<p>Dockerfile を置くディレクトリをつくる。<br>
+今回は ROS の Kinetic を動かすので以下のようにディレクトリをつくってみる。</p>
+<pre class="prettyprint"><code>$ mkdir -p docker_ws/ros/kinetic</code></pre>
+<p>Dockerfile を記述する。</p>
+<pre class="prettyprint"><code>$ cd docker_ws/ros/kinetic
+$ vim Dockerfile</code></pre>
+<pre class="prettyprint"><code>FROM ros:kinetic-ros-base
+RUN apt-get update &amp;&amp; apt-get install -y \
+    ros-kinetic-ros-tutorials \
+    ros-kinetic-common-tutorials \
+    &amp;&amp; rm -rf /var/lib/apt/lists/
+</code></pre>
+<p>つづいてコンテナイメージをビルドします。</p>
+<pre class="prettyprint"><code>$ docker build . --tag ros:ros-tutorials</code></pre>
+
+<h2>ROS tutorial を動かす</h2>
+<p>まず通信用のネットワークを作ります。</p>
+<pre class="prettyprint"><code>$ docker network create ros</code></pre>
+<p>roscore を起動します。</p>
+<pre class="prettyprint"><code>$ docker run -it --rm \
+--net=ros \
+--name master \
+ros:ros-tutorials \
+roscore</code></pre>
+<p>roscore が正しく立ち上がれば成功しています。<br>
+では、新しくターミナルを立ち上げてパブリッシャを起動してみましょう。</p>
+<pre class="prettyprint"><code>$ docker run -it --rm \
+--net=ros \
+--env ROS_HOSTNAME=talker \
+--env ROS_MASTER_URI=http://master:11311 \
+--name talker \
+ros:ros-tutorials \
+rosrun roscpp_tutorials talker</code></pre>
+<p>配信が始まれば成功しています。<br>
+つづいて配信を受け取るサブスクライバを起動してみましょう。</p>
+<pre class="prettyprint"><code>$ docker run -it --rm \
+--net=ros \
+--env ROS_HOSTNAME=listener \
+--env ROS_MASTER_URI=http://master:11311 \
+--name listener \
+ros:ros-tutorial \
+rosrun roscpp_tutorials listener</code></pre>
+<p>うまく受信できたでしょうか。この記事はこれで以上になります<br>
+個人的に Docker と ROS はバージョン管理を簡単にし、とても相性がいいものだと考えています。積極的に使っていきたいですね。</p>
+
+<h2>参考</h2>
+<a href="https://qiita.com/Giso_/items/9c518c8ed994d243d236">Mac版DockerでROSを動かしてみたメモ - Qiita</a>
+<p></p>
+<ul>
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2018 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
