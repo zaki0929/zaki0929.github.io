@@ -36,10 +36,10 @@
 <pre class="prettyprint"><code>$ cd docker_ws/ros/kinetic
 $ vim Dockerfile</code></pre>
 <pre class="prettyprint"><code>FROM ros:kinetic-ros-base
-RUN apt-get update &amp;&amp; apt-get install -y \
-    ros-kinetic-ros-tutorials \
-    ros-kinetic-common-tutorials \
-    &amp;&amp; rm -rf /var/lib/apt/lists/
+RUN apt-get update &amp;&amp; apt-get install -y <span style="font-family: Arial;">\</span>
+    ros-kinetic-ros-tutorials <span style="font-family: Arial;">\</span>
+    ros-kinetic-common-tutorials <span style="font-family: Arial;">\</span>
+    &amp;&amp; rm -rf /var/lib/apt/lists <span style="font-family: Arial;">\</span>
 </code></pre>
 <p>つづいてコンテナイメージをビルドします。</p>
 <pre class="prettyprint"><code>$ docker build . --tag ros:ros-tutorials</code></pre>
@@ -48,28 +48,28 @@ RUN apt-get update &amp;&amp; apt-get install -y \
 <p>まず通信用のネットワークを作ります。</p>
 <pre class="prettyprint"><code>$ docker network create ros</code></pre>
 <p>それでは、まず roscore を起動しましょう。</p>
-<pre class="prettyprint"><code>$ docker run -it --rm \
---net=ros \
---name master \
-ros:ros-tutorials \
+<pre class="prettyprint"><code>$ docker run -it --rm <span style="font-family: Arial;">\</span>
+--net=ros <span style="font-family: Arial;">\</span>
+--name master <span style="font-family: Arial;">\</span>
+ros:ros-tutorials <span style="font-family: Arial;">\</span>
 roscore</code></pre>
 <p>roscore が正しく立ち上がれば成功しています。<br>
 では、新しくターミナルを立ち上げてパブリッシャを起動してみましょう。</p>
-<pre class="prettyprint"><code>$ docker run -it --rm \
---net=ros \
---env ROS_HOSTNAME=talker \
---env ROS_MASTER_URI=http://master:11311 \
---name talker \
-ros:ros-tutorials \
+<pre class="prettyprint"><code>$ docker run -it --rm <span style="font-family: Arial;">\</span>
+--net=ros <span style="font-family: Arial;">\</span>
+--env ROS_HOSTNAME=talker <span style="font-family: Arial;">\</span>
+--env ROS_MASTER_URI=http://master:11311 <span style="font-family: Arial;">\</span>
+--name talker <span style="font-family: Arial;">\</span>
+ros:ros-tutorials <span style="font-family: Arial;">\</span>
 rosrun roscpp_tutorials talker</code></pre>
 <p>配信が始まれば成功しています。<br>
 つづいて配信を受け取るサブスクライバを起動してみましょう。</p>
-<pre class="prettyprint"><code>$ docker run -it --rm \
---net=ros \
---env ROS_HOSTNAME=listener \
---env ROS_MASTER_URI=http://master:11311 \
---name listener \
-ros:ros-tutorial \
+<pre class="prettyprint"><code>$ docker run -it --rm <span style="font-family: Arial;">\</span>
+--net=ros <span style="font-family: Arial;">\</span>
+--env ROS_HOSTNAME=listener <span style="font-family: Arial;">\</span>
+--env ROS_MASTER_URI=http://master:11311 <span style="font-family: Arial;">\</span>
+--name listener <span style="font-family: Arial;">\</span>
+ros:ros-tutorial <span style="font-family: Arial;">\</span>
 rosrun roscpp_tutorials listener</code></pre>
 <p>うまく受信できたでしょうか。この記事はこれで以上になります<br>
 個人的に Docker と ROS はバージョン管理を簡単にし、とても相性がいいものだと考えています。積極的に使っていきたいですね。</p>
