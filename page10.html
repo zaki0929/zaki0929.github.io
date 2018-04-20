@@ -25,7 +25,7 @@
  
 <h2>ヘッダファイルの記述</h2>
 <p>まずは、ヘッダファイルに以下を追記します。<br>
-今回は簡易的に、立体の3Dオブジェクトを使用します。</p>
+今回は簡易的に、立方体の3Dオブジェクトを使用します。</p>
 <pre class="prettyprint"><code>ofVideoPlayer vid;
 ofBoxPrimitive box;</code></pre>
 
@@ -35,15 +35,15 @@ ofBoxPrimitive box;</code></pre>
 <p>次に update() 内で、動画を更新させる記述をします。</p>
 <pre class="prettyprint"><code>vid.update();</code></pre>
 <p>以上で準備はおしまいです。それでは draw() 内に、描画するための記述をします。</p>
-<pre class="prettyprint"><code>/* 描画する立体のサイズと位置を指定 */
+<pre class="prettyprint"><code>/* 描画する立方体のサイズと位置を指定 */
 box.set(0.01);
 box.setPosition(0, 0, 0);
 
-/* 動画のテクスチャを立体に貼り付けて描画 */
+/* 動画のテクスチャを立方体に貼り付けて描画 */
 vid.getTextureReference().bind;
 box.draw();
 vid.getTextureReference().unbind;</code></pre>
-<p>また動画の再生と停止は以下の関数で行うことができます。各自埋め込んで見て下さい。</p>
+<p>また動画の再生と停止は以下の関数で行うことができます。各自埋め込んでみて下さい。</p>
 <pre class="prettyprint"><code>vid.play();
 vid.stop();</code></pre>
 <p>うまく動いたでしょうか。この記事はこれで以上になります。<br>
