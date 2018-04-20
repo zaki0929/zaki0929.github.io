@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="openFrameworks,3D,video,movie">
+<title>openFrameworks で3Dオブジェクトに動画を貼り付ける | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<script type="text/javascript" src="vimlike.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2018/04/20</h4>
+<h1>openFrameworks で3Dオブジェクトに動画を貼り付ける</h1>
+
+<p>このページでは openFrameworks で3Dオブジェクトに動画のテクスチャを貼り付けて再生する方法をまとめています。</p>
+ 
+<h2>ヘッダファイルの記述</h2>
+<p>まずは、ヘッダファイルに以下を追記します。<br>
+今回は簡易的に、立体の3Dオブジェクトを使用します。</p>
+<pre class="prettyprint"><code>ofVideoPlayer vid;
+ofBoxPrimitive box;</code></pre>
+
+<h2>ソースファイルの記述</h2>
+<p>まずは setup() 内で、動画ファイルを読み込みましょう。</p>
+<pre class="prettyprint"><code>vid.loadMovie(sample.mp4);</code></pre>
+<p>次に update() 内で、動画を更新させる記述をします。</p>
+<pre class="prettyprint"><code>vid.update();</code></pre>
+<p>以上で準備はおしまいです。それでは draw() 内に、描画するための記述をします。</p>
+<pre class="prettyprint"><code>/* 描画する立体のサイズと位置を指定 */
+box.set(0.01);
+box.setPosition(0, 0, 0);
+
+/* 動画のテクスチャを立体に貼り付けて描画 */
+vid.getTextureReference().bind;
+box.draw();
+vid.getTextureReference().unbind;</code></pre>
+<p>また動画の再生と停止は以下の関数で行うことができます。各自埋め込んで見て下さい。</p>
+<pre class="prettyprint"><code>vid.play();
+vid.stop();</code></pre>
+<p>うまく動いたでしょうか。この記事はこれで以上になります。<br>
+ちなみに画像も同じ要領でオブジェクトに貼り付けできます。ofImage などで実装できるので試してみるといいかもしれません。</p>
+
+<h2>参考</h2>
+<a href="https://forum.openframeworks.cc/t/3d-video-texture/3547">3D video texture - beginners - openFrameworks</a>
+<p></p>
+<ul>
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2018 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
