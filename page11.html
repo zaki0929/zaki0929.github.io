@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="ROS,roscd,catkin_ws,catkin_make">
+<title>roscd で catkin_ws に移動する | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<script type="text/javascript" src="vimlike.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2018/04/25</h4>
+<h1>roscd で catkin_ws に移動する</h1>
+
+<p>このページでは引数を与えずに roscd を実行したときに、移動するディレクトリを変更する方法を紹介します。<br>
+デフォルトでは catkin_ws/devel に移動するため catkin_make をするときに、不便です。<br>
+なので、今回は roscd で catkin_ws に移動させてみます。</p>
+ 
+<h2>方法</h2>
+<p>以下を実行するとパスが設定され、roscd で ~/catkin_ws に 移動することができます。</p>
+<pre class="prettyprint"><code>export ROS_WORKSPACE=$HOME/catkin_ws</code></pre>
+<p>毎度実行するのは面倒なので、.bashrc などに上記を記述しておくといいと思います。</p>
+<ul>
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2018 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
