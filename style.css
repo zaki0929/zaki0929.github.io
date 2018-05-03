@@ -70,14 +70,14 @@ header a:hover    {color: #585858;}
 .articles h2  {margin-top: 0;}
 
 .side         {width: 120px;
-              height: 240px;
-              overflow: scroll;
               float: right;}
 
 .wrap         {overflow: hidden;}
 
 .fix          {position: fixed;
-              width: 120px;}
+              width: 120px;
+              height: 240px;
+              overflow: scroll;}
 
 article       {background-color: #ffffff;
               margin-left: auto;
