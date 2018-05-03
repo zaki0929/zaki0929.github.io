@@ -75,8 +75,9 @@ header a:hover    {color: #585858;}
 .wrap         {overflow: hidden;}
 
 .fix          {position: fixed;
-              width: 120px;
-              height: 240px;
+              width: 120px;}
+
+.fix article  {height: 240px;
               overflow: scroll;}
 
 article       {background-color: #ffffff;
