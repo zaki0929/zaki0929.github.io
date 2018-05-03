@@ -80,6 +80,9 @@ header a:hover    {color: #585858;}
               border-radius: 10px;
               overflow-y: scroll}
 
+.fix h2       {margin-top: 4px;
+              margin-bottom: 4px;}
+
 article       {background-color: #ffffff;
               margin-left: auto;
               margin-right: auto;
