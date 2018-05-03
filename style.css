@@ -75,10 +75,10 @@ header a:hover    {color: #585858;}
 .wrap         {overflow: hidden;}
 
 .fix          {position: fixed;
-              width: 120px;}
-
-.fix article  {height: 240px;
-              overflow: scroll;}
+              width: 120px;
+              height: 240px;
+              border-radius: 10px;
+              overflow-y: scroll}
 
 article       {background-color: #ffffff;
               margin-left: auto;
