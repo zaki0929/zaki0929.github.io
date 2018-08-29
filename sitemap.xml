@@ -1,61 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-<!--  created with free sitemap generation system www.sitemapxml.jp  --> 
 <url>
-  <loc>https://zaki0929.github.io/mypages/</loc>
+  <loc>http://zaki0929.github.io/</loc>
   <priority>1.0</priority>
-  <lastmod>2018-03-02T01:33:15+09:00</lastmod>
 </url>
 <url>
-  <loc>https://zaki0929.github.io/mypages/index.html</loc>
+  <loc>http://zaki0929.github.io/index.html</loc>
   <priority>0.8</priority>
-  <lastmod>2018-03-02T01:33:15+09:00</lastmod>
 </url>
 <url>
-  <loc>https://zaki0929.github.io/mypages/page02.html</loc>
+  <loc>http://zaki0929.github.io/diary2018.html</loc>
   <priority>0.8</priority>
-  <lastmod>2018-03-02T01:33:15+09:00</lastmod>
 </url>
 <url>
-  <loc>https://zaki0929.github.io/mypages/page07.html</loc>
+  <loc>http://zaki0929.github.io/page01.html</loc>
   <priority>0.8</priority>
-  <lastmod>2018-03-02T01:33:15+09:00</lastmod>
 </url>
 <url>
-  <loc>https://zaki0929.github.io/mypages/page03.html</loc>
+  <loc>http://zaki0929.github.io/page02.html</loc>
   <priority>0.8</priority>
-  <lastmod>2018-03-02T01:33:15+09:00</lastmod>
 </url>
 <url>
-  <loc>https://zaki0929.github.io/mypages/page01.html</loc>
+  <loc>http://zaki0929.github.io/page03.html</loc>
   <priority>0.8</priority>
-  <lastmod>2018-03-02T01:33:15+09:00</lastmod>
 </url>
 <url>
-  <loc>https://zaki0929.github.io/mypages/page04.html</loc>
+  <loc>http://zaki0929.github.io/page04.html</loc>
   <priority>0.8</priority>
-  <lastmod>2018-03-02T01:33:15+09:00</lastmod>
 </url>
 <url>
-  <loc>https://zaki0929.github.io/mypages/page05.html</loc>
+  <loc>http://zaki0929.github.io/page05.html</loc>
   <priority>0.8</priority>
-  <lastmod>2018-03-02T01:33:15+09:00</lastmod>
 </url>
 <url>
-  <loc>https://zaki0929.github.io/mypages/page06.html</loc>
+  <loc>http://zaki0929.github.io/page06.html</loc>
   <priority>0.8</priority>
-  <lastmod>2018-03-02T01:33:15+09:00</lastmod>
 </url>
 <url>
-  <loc>https://zaki0929.github.io/mypages/page08.html</loc>
+  <loc>http://zaki0929.github.io/page07.html</loc>
   <priority>0.8</priority>
-  <lastmod>2018-03-02T01:33:15+09:00</lastmod>
 </url>
 <url>
-  <loc>https://zaki0929.github.io/mypages/diary2018.html</loc>
+  <loc>http://zaki0929.github.io/page08.html</loc>
   <priority>0.8</priority>
-  <lastmod>2018-03-02T01:33:15+09:00</lastmod>
+</url>
+<url>
+  <loc>http://zaki0929.github.io/page09.html</loc>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>http://zaki0929.github.io/page10.html</loc>
+  <priority>0.8</priority>
+</url>
+<url>
+<url>
+  <loc>http://zaki0929.github.io/page11.html</loc>
+  <priority>0.8</priority>
+</url>
+  <loc>http://zaki0929.github.io/page12.html</loc>
+  <priority>0.8</priority>
 </url>
 
 </urlset>
