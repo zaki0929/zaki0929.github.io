@@ -28,9 +28,14 @@
 <h4>2018/08/30</h4>
 <h1>tf Broadcaster を使おうとしてハマった </h1>
 
+<p>最近 tf Broadcaster を使おうとしてハマったのでメモとして残しておきます。</p>
+
+<h2>ハマった話</h2>
 <p>最近 tf Broadcaster を使おうとして make するときに <strong>tf::TransformBroadcaster::TransformBroadcaster()' に対する定義されていない参照です '</strong> といわれました。</p>
-<p>え、tf/transform_datatypes.h は使えてたのに、なんで! と思っていましたが、依存関係をみたら tf2 しか入れていませんでした。</p>
-<p>tf2 には tf/transform_datatypes.h はあるけど、tf/transform_broadcast.h はないのかな。</p>
+<p>tf/transform_datatypes.h は使えていたので、なんで! っていう感じです。</p>
+<p>依存関係を確認したらそこに tf はなく tf2 しか入れていませんでした。</p>
+<p>試しに tf も加えてみたら正常に動きました。</p>
+<p>tf2 には tf/transform_datatypes.h は一応あるけど、tf/transform_broadcast.h はないよということらしい。</p>
 <p>tf2 いれてるなら tf2 Broadcaster を使えってことですね。</p>
 <p></p>
 <ul>
