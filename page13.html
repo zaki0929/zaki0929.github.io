@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="ROS,tf,tf2,tf Broadcaster,ubuntu">
+<title>tf Broadcaster を使おうとしてハマった | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-6967324061031661",
+      enable_page_level_ads: true
+    });
+</script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<script type="text/javascript" src="vimlike.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2018/08/30</h4>
+<h1>tf Broadcaster を使おうとしてハマった </h1>
+
+<p>最近 tf Broadcaster を使おうとして make するときに <strong>tf::TransformBroadcaster::TransformBroadcaster()' に対する定義されていない参照です '</strong> といわれました。</p>
+<p>え、tf/transform_datatypes.h は使えてたのに、なんで! と思っていましたが、依存関係をみたら tf2 しか入れていませんでした。</p>
+<p>tf2 には tf/transform_datatypes.h はあるけど、tf/transform_broadcast.h はないのかな。</p>
+<p>tf2 いれてるなら tf2 Broadcaster を使えってことですね。</p>
+<p></p>
+<ul>
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2018 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
