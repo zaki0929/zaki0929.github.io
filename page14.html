@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="ubuntu,CakePHP,composer">
+<title>Ubuntu 16.04 に CakePHP3 をインストールするメモ | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6967324061031661",
+    enable_page_level_ads: true
+  });
+</script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<script type="text/javascript" src="vimlike.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2018/08/31</h4>
+<h1>Ubuntu 16.04 に CakePHP3 をインストールするメモ</h1>
+
+<p>最近 CakePHP を使う機会があったため、ここにメモを残しておきます。</p>
+<p>このページでは Ubuntu 16.04 で CakePHP3 をインストールしてプロジェクトを作成するところまでの手順を紹介します。</p>
+ 
+<h2>環境</h2>
+<ul>
+<li>Ubuntu 16.04</li>
+</ul>
+
+<h2>インストール</h2>
+<p>apt で以下のようにインストールしていきます。</p>
+<p>わかりづらいのでワンライナーではなく、別々に書いてみました。</p>
+<pre class="prettyprint"><code>$ sudo apt install php7.0
+$ sudo apt install php7.0-intl
+$ sudo apt install php7.0-mbstring
+$ sudo apt install php7.0-xml
+$ sudo apt install composer</code></pre>
+<p>Composer というのは PHP のパッケージ管理システムです、今回はこの Composer を使って CakePHP3 のプロジェクトを作成します。</p>
+
+<h2>プロジェクトの作成</h2>
+<p>今回は hellocakeという名前のプロジェクトを作ってみます。</p>
+<p>まずは以下のコマンドを実行してプロジェクトを作成します。</p>
+<pre class="prettyprint"><code>$ composer create-project --prefer-dist cakephp/app hellocake</code></pre>
+<p>続いて必要なライブラリをインストールしましょう。</p>
+<p>以下のように、上のコマンドで作成されたディレクトリに移動し、composer install を実行します。</p>
+<pre class="prettyprint"><code>$ cd hellocake
+$ composer install</code></pre>
+<p>以上でプロジェクトの作成は完了です。</p>
+
+<h2>試しにサーバーをたててみる</h2>
+<p>プロジェクトを作成してみたので試しにサーバーをたててみましょう。</p>
+<p>以下のコマンドで開発用のサーバーをたてることができます。</p>
+<pre class="prettyprint"><code>$ bin/cake server</code></pre>
+<p>サーバーがたったらブラウザで以下のアドレスにアクセスしてみましょう。</p>
+<pre class="prettyprint"><code>http://localhost:8765/</code></pre>
+<p>Database の欄に不穏な雰囲気がみられるのは、まだ Database の接続設定をしていないためなので問題ないです。</p>
+<p>Database を扱いたいときには適宜設定をしてください。</p>
+
+<h2>参考</h2>
+<a href="http://libro.tuyano.com/index2?id=4536003">初心者のためのCakePHP3 プログラミング入門 - libro</a><br>
+<p></p>
+<ul>
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2018 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
