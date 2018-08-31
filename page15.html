@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="CakePHP,CSRF,CSRF token mismatch,FormHelper,form,input,">
+<title>CakePHP3 で入力フォームを作ったら CSRF token mismatch といわれた | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6967324061031661",
+    enable_page_level_ads: true
+  });
+</script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<script type="text/javascript" src="vimlike.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2018/09/01</h4>
+<h1>CakePHP3 で入力フォームを作ったら CSRF token mismatch といわれた</h1>
+
+<p>CakePHP3 で入力フォームを作ったら CSRF token mismatch といわれたので原因と対処法を残しておきます。</p>
+ 
+<h2>環境</h2>
+<ul>
+<li>CakePHP 3.6.10</li>
+</ul>
+
+<h2>原因</h2>
+<p>CSRF token mismatch とエラーがはかれる原因は、</p>
+<li>CSRF 攻撃からの保護機能が有効になっているため</li>
+<p>です。</p>
+<p>このエラーは CakePHP の FormHelper という機能をつかって入力フォームを作ることで回避できます。</p>
+<p>また、危険ですが保護機能を無効にすることでも回避することができます。</p>
+<p>以上の二つの対処法を以下で説明します。</p>
+
+<h2>対処法1 - FormHelper を使う</h2>
+<p>前提として以下の状態を想定します。</p>
+<li>Controller -&gt; Hello</li>
+<li>Action -&gt; index</li>
+<p>例えば以下のような入力フォームをつくりたいとします。</p>
+<pre class="prettyprint"><code>&lt;form method="post" action="/hello/index"&gt;
+  &lt;input type="text" name="msg"&gt;
+  &lt;input type="submit"&gt;
+&lt;/form&gt;</code></pre>
+<p>上のような入力フォームを FormHelper を使ってつくるためには以下のようにかきます。</p>
+<pre class="prettyprint"><code>&lt;?=$this-&gt;Form-&gt;create(null, ['url' =&gt; [controller' =&gt; 'Hello', 'action' =&gt; 'index'], 'type' =&gt; 'post'])?&gt;
+&lt;?=$this-&gt;Form-&gt;input('msg');?&gt;
+&lt;?=$this-&gt;Form-&gt;submit('送信')?&gt;
+&lt;?=$this-&gt;Form-&gt;end()?&gt;</code></pre>
+<p>null と書いているところはモデル名を指定するところです。</p>
+<p>とりあえず null としていますが、実際に使う場合はモデル名を指定したほうが便利です。</p>
+<p>POST ではなく、GET にしたい場合は type の post と書かれているところを get に書き換えて下さい。</p>
+
+<h2>対処法2 - 保護機能を無効にする</h2>
+<p>この方法はおすすめできませんが、一応書いておきます。</p>
+<p>src/Application.php 内にある以下の部分をコメントアウトすることで CSRF 攻撃からの保護機能を無効化できます。</p>
+<pre class="prettyprint"><code>// Add csrf middleware.
+-&gt;add(new CsrfProtectionMiddleware([
+  'httpOnly' =&gt; false
+]));</code></pre>
+<p>ここを丸ごとコメントアウトすると末尾のセミコロンも消されるため、適宜セミコロンを追記してください。</p>
+
+<h2>参考</h2>
+<a href="https://teratail.com/questions/138185">PHP - CAKEPHP3.6フォーム送信時 CSRF token mismatchエラー発生 | teratail</a><br>
+<a href="http://libro.tuyano.com/index2?id=4536003">初心者のためのCakePHP3 プログラミング入門 - libro</a><br>
+<p></p>
+<ul>
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2018 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
