@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="Ruby,Twitter,ubuntu,linux">
+<title>Ruby で Twitter | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="canonical" href="https://zaki0929.github.io/page06.html"/>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6967324061031661",
+    enable_page_level_ads: true
+  });
+</script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<script type="text/javascript" src="vimlike.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2018/01/16</h4>
+<h1>Ruby で Twitter</h1>
+
+<p>このページでは Ruby を使って Twitter でつぶやく方法を説明します。</p>
+ 
+<h2>環境</h2>
+<ul>
+<li>Ubuntu 16.04</li>
+<li>Ruby 2.5.0</li>
+</ul>
+
+<h2>方法</h2>
+<p>まず、作業用のディレクトリを作って、その中に移動します。</p>
+<pre class="prettyprint"><code>$ mkdir tw_bot
+$ cd tw_bot</code></pre>
+<p>Twitter のライブラリをインストールします。</p>
+<pre class="prettyprint"><code>$ gem install twitter </code></pre>
+<p>では、つぶやくためのスクリプトを記述します。</p>
+<pre class="prettyprint"><code>$ vim tw_bot.rb </code></pre>
+<pre class="prettyprint"><code>require "twitter"
+
+client = Twitter::REST::Client.new do | config |
+  config.consumer_key = "your consumer key"
+  config.consumer_secret = "your consumer secret"
+  config.access_token = "your access token"
+  config.access_token_secret = "your access token secret"
+end
+
+client.update("Hello world")
+</code></pre>
+<p>"your consumer key", "your consumer secret", "your access token", "your access token secret" の中に書く情報は<a href="https://apps.twitter.com/">このページ</a>の "Keys and Access Tokens" タブから参照できます。</p>
+<p>またコードのようにクライアントを定義した場合は、以下のようにつぶやく内容を設定できます。</p>
+<pre class="prettyprint"><code>client.update("つぶやく内容")</code></pre>
+<p>では、つぶやいてみましょう。<br>
+先ほど鍵を設定したアカウントでつぶやかれるので注意して下さい。</p>
+<p>以下のようにスクリプトを実行するとツイートが送信されます。</p>
+<pre class="prettyprint"><code>$ ruby tw_bot.rb</code></pre>
+<p>今回はただツイートを送信しただけですが、他にも色々できるみたいです。</p>
+
+<h2>参考</h2>
+<ul>
+<li><a href="https://rikoroku.com/?p=534">今更ながらRubyでTwitterへ自動ツイートできるプラグラムを作ってみたので、2017年12月現在手順通りに行うだけで同じように作れる情報を共有。 &#8211; Kogawa</a></li>
+</ul>
+
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="5584717331"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+
+<ul style="list-style-type:circle">
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2018 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
