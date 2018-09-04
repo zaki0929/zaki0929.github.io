@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="Gradle,Processing">
+<title>Gradle で Processing | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6967324061031661",
+    enable_page_level_ads: true
+  });
+</script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<script type="text/javascript" src="vimlike.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2018/09/03</h4>
+<h1>Gradle で Processing</h1>
+
+<p>最近、Processing を使う機会があったので、Gradle から Processing を使う方法を書き残しておきます。</p>
+<p>Gradle で Processing を扱うと別途で Processing の環境を用意しなくていいので楽です。</p>
+ 
+<h2>環境</h2>
+<ul>
+<li>Gradle 4.8.1</li>
+</ul>
+
+<h2>build.gradle の記述</h2>
+<p>まず build.gradle を記述しましょう。</p>
+<p>ここで、dependencies に Processing を含めることで、ビルドするときに Processing が入ります。</p>
+<p>以下が build.gradle になります。</p>
+<pre class="prettyprint"><code>apply plugin: 'application'
+
+repositories {
+  jcenter()
+}
+
+dependencies {
+  compile group: 'org.processing', name: 'core', version: '3.0'
+}
+
+mainClassName = 'myprocessing.mysketch.MySketch'</code></pre>
+<p>application プラグインを入れていたり、mainClassName を定義しているのは、ビルドするときに、ただ gradle run と打つだけにしたいからです。</p>
+
+<h2>ソースコードの記述</h2>
+<p>今回は src/main/java/myprocessing/mysketch 内に MySketch.java というソースコードを作成します。</p>
+<p>ひとまずディレクトリを作ります。</p>
+<pre class="prettyprint"><code>$ mkdir -p src/main/java/myprocessing/mysketch</code></pre>
+<p>では実際に書いていきましょう。</p>
+<p>今回は簡単にひたすら円を右に流すプログラムを用意しました。</p>
+<pre class="prettyprint"><code>$ vim src/main/java/myprocessing/mysketch/MySketch.java</code></pre>
+<pre class="prettyprint"><code>package myprocessing.mysketch;
+import processing.core.*;
+
+public class MySketch extends PApplet{
+
+  private int x;
+  private static final int r = 40;
+
+  public void settings(){
+    size(800, 800);
+  }
+
+  public void setup(){
+    x = 0;
+  }
+  
+  public void draw(){
+    background(255);
+    x = x + 1;
+    ellipse(x, height/2, r*2, r*2);
+    if(x &gt;= width+r){
+      x = 0;
+    } 
+  }
+
+  public static void main(String args[]){
+    PApplet.main(new String[] { "--present", MySketch.class.getName()});
+  }
+}
+
+</code></pre>
+
+<h2>動かしてみる</h2>
+<p>ソースを書き終えたら以下のコマンドで動きます。</p>
+<pre class="prettyprint"><code>$ gradle run</code></pre>
+<p>ウィンドウが出現し、円が右に流れるアニメーションが再生されれば成功です。</p>
+
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="5584717331"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+
+<ul style="list-style-type:circle">
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2018 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
