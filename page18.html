@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="CakePHP,Upload Plugin 3.0,file,upload,image,photo">
+<title>CakePHP3 で Upload Plugin 3.0 を使いファイルをアップロードする | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6967324061031661",
+    enable_page_level_ads: true
+  });
+</script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<script type="text/javascript" src="vimlike.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2018/09/06</h4>
+<h1>CakePHP3 で Upload Plugin 3.0 を使い入力フォームからファイルをアップロードできるようにする</h1>
+
+<p>CakePHP3 で入力フォームからファイルをアップロードする機会があったので、その方法を残しておきます。</p>
+<p>この方法を使えば画像などもアップロードできます。</p>
+ 
+<h2>環境</h2>
+<ul>
+<li>CakePHP 3.6.10</li>
+</ul>
+
+<h2>プラグインの準備</h2>
+<p>今回は Upload Plugin 3.0 というプラグインを使用します。</p>
+<p>まず以下のコマンドでプラグインをインストールします。</p>
+<pre class="prettyprint"><code>$ composer require josegonzalez/cakephp-upload</code></pre>
+<p>つづいて、プラグインをロードします。</p>
+<pre class="prettyprint"><code>$ bin/cake plugin load Josegonzalez/Upload</code></pre>
+<p>これで準備は終了です。</p>
+
+<h2>フィールドへのプラグインの適用</h2>
+<p>今回は例として Map というモデルを用意したとします。</p>
+<p>またそのテーブルに、varchar(255) のフィールドを用意してあり、その名前を image とします。</p>
+<p>フィールドにプラグインを適用するために、以下のように src/Model/Table/MapsTable.php の initialize 関数内に追記します。</p>
+<pre class="prettyprint"><code>vim src/Model/Table/MapsTable.php</code></pre>
+<pre class="prettyprint"><code>//public function initialize(array $config){
+    $this-&gt;addBehavior('Josegonzalez/Upload.Upload', ['image']);
+//}</code></pre>
+
+<h2>入力フォームの設定</h2>
+<p>次に、入力フォームの設定をしましょう。</p>
+<p>設定といっても以下のように type を file にするだけです。</p>
+<pre class="prettyprint"><code>&lt;?= $this-&gt;Form-&gt;create(null, ['type' =&gt; 'file']) ?&gt;</code></pre>
+<pre class="prettyprint"><code>&lt;?= $this-&gt;Form-&gt;control('image', ['type' =&gt; 'file']) ?&gt;</code></pre>
+<p>これでファイルをアップロードする準備は完了しました！</p>
+<p>アップロードしてみてください。</p>
+
+<h2>アップロードされたファイルの場所</h2>
+<p>アップロードされたファイルは、モデルやフィールドに名前をつけていると webroot/files/Maps/image/ にあります。</p>
+<p>みてみましょう。</p>
+<pre class="prettyprint"><code>$ ls webroot/files/Maps/image/</code></pre>
+<p>アップロードしたファイルがあれば成功です。</p>
+<p>ちなみに、DB のフィールドにはファイル名が入っています。</p>
+
+<h2>参考</h2>
+<ul>
+<li><a href="http://josediazgonzalez.com/2015/12/05/uploading-files-and-images/">CakeAdvent-2015: Uploading files and images with CakePHP 3</a></li>
+<li><a href="https://info.yama-lab.com/cakephp3%E3%81%A7%E7%94%BB%E5%83%8F%E3%81%AA%E3%81%A9%E3%82%92%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%E3%81%99%E3%82%8B%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3upload-plugin-3-0/">cakephp3で画像(など)をアップロードするプラグインUpload Plugin 3.0を使ってみる。 | yama-log</a></li>
+</ul>
+
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="5584717331"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+
+<ul style="list-style-type:circle">
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2018 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
