@@ -37,7 +37,7 @@
 </ul>
 
 <h2>解決した方法</h2>
-<p>config.inc.php を編集します。</p>
+<p>config.inc.php を編集し、以下の二つを設定します。</p>
 <pre class="prettyprint"><code>$ sudo vim /etc/phpmyadmin/config.inc.php</code></pre>
 <pre class="prettyprint"><code>$cfg['Servers'][$i]['controluser'] = ‘root’;
 $cfg['Servers'][$i]['controlpass'] = ‘root ユーザーのパスワード (MySQL で設定したもの) ’;</code></pre>
