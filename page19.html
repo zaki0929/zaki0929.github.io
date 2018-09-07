@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="phpMyAdmin,ubuntu,controluser">
+<title>phpMyAdmin で "設定ファイルに定義されている管理ユーザ(controluser)での接続に失敗しました。" といわれた | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6967324061031661",
+    enable_page_level_ads: true
+  });
+</script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<script type="text/javascript" src="vimlike.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2018/09/07</h4>
+<h1>phpMyAdmin で "設定ファイルに定義されている管理ユーザ(controluser)での接続に失敗しました。" といわれた</h1>
+
+<p>phpMyAdmin で "設定ファイルに定義されている管理ユーザ(controluser)での接続に失敗しました。" といわれたので、自分がこのエラーを解決した方法を残しておきます。</p>
+ 
+<h2>環境</h2>
+<ul>
+  <li>Ubuntu 16.04</li>
+  <li>phpMyAdmin 4.5.4.1</li>
+</ul>
+
+<h2>解決した方法</h2>
+<p>config.inc.php を編集します。</p>
+<pre class="prettyprint"><code>$ sudo vim /etc/phpmyadmin/config.inc.php</code></pre>
+<pre class="prettyprint"><code>$cfg['Servers'][$i]['controluser'] = ‘root’;
+$cfg['Servers'][$i]['controlpass'] = ‘root ユーザーのパスワード (MySQL で設定したもの) ’;</code></pre>
+<p>これで自分は解決しました。</p>
+<p>確認してみてください。</p>
+
+<h2>参考</h2>
+<ul>
+<li><a href="http://lovee7.blog.fc2.com/blog-entry-29.html">【phpMyAdmin】「設定ファイルに定義されている管理ユーザ(controluser)での接続に失敗しました。」エラーを解決する - marronブログ</a></li>
+</ul>
+
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="5584717331"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+
+<ul style="list-style-type:circle">
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2018 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
