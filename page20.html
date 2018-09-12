@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="PHP,Composer,composer install,swap,memory">
+<title>CakePHP3 で composer install しようとしたら "The following exception is caused by a lack of memory and not having swap configured" といわれた | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6967324061031661",
+    enable_page_level_ads: true
+  });
+</script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<script type="text/javascript" src="vimlike.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2018/09/12</h4>
+<h1>CakePHP3 で composer install しようとしたら "The following exception is caused by a lack of memory and not having swap configured" といわれた</h1>
+
+<p>CakePHP3 で composer install しようとしたら "The following exception is caused by a lack of memory and not having swap configured" といわれたのでこれを解決した方法を残しておきます。</p>
+<p>これは Composer のエラーなので、CakePHP3 以外の用途でこのエラーと遭遇した方でも解決するかもしれません 。</p>
+ 
+<h2>環境</h2>
+<ul>
+  <li>Ubuntu 16.04</li>
+</ul>
+
+<h2>解決した方法</h2>
+<p>以下のようにして、swap 領域を作ってあげることで解決しました。</p>
+<pre class="prettyprint"><code>$ sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024
+$ sudo /sbin/mkswap /var/swap.1
+$ sudo /sbin/swapon /var/swap.1</code></pre>
+
+<h2>参考</h2>
+<ul>
+<li><a href="http://www.thirtyfive.info/entry/2018/07/14/aws_EC2%E3%81%A7php%E3%81%AEcomposer_update%E3%81%A7%E3%81%AE%E3%82%A8%E3%83%A9%E3%83%BC%EF%BC%9AThe_following_exception_is_caused_by_a_lack_of_memory_or_swap%2C_or_not_having_swap_configured">aws EC2でphpのcomposer updateでのエラー：The following exception is caused by a lack of memory or swap, or not having swap configured - さんごー日記。</a></li>
+</ul>
+
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="5584717331"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+
+<ul style="list-style-type:circle">
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2018 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
