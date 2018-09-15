@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="CakePHP,JavaScript,DB,Table,PHP">
+<title>CakePHP3 でテーブルのデータを JavaScript に渡したい | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6967324061031661",
+    enable_page_level_ads: true
+  });
+</script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<script type="text/javascript" src="vimlike.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2018/09/16</h4>
+<h1>CakePHP3 でテーブルのデータを JavaScript に渡したい</h1>
+
+<p>CakePHP3 でテーブルのデータを JavaScript に渡したい機会があったので、忘れないように書き残しておきます。</p>
+ 
+<h2>環境</h2>
+<ul>
+  <li>CakePHP 3.6.10</li>
+</ul>
+
+<h2>コントローラの記述</h2>
+<p>今回は animals というテーブルを扱うとします。</p>
+<p>そしてそのテーブルの name カラムにあるフィールドのデータを JavaScript に送りたいとしておきます。</p>
+<p>まずコントローラから animals テーブルにアクセスできるようにします。</p>
+<pre class="prettyprint"><code>$this-&gt;Animals = TableRegistry::get('animals');</code></pre>
+<p>次に animals テーブルから name カラムにあるフィールドのデータを引っ張ってきて配列にいれます。</p>
+<pre class="prettyprint"><code>$animals_name = array();
+foreach($this-&gt;Animals-&gt;find('all') as $animal){
+  array_push($animals_name, $animal-&gt;name);
+}</code></pre>
+<p>しかし、配列だとPHPにデータを渡すことができないので、一つの文字列にしてしまいます。</p>
+<p>今回は implode 関数をつかい CSV にします。</p>
+<pre class="prettyprint"><code>$animals_name_csv = implode(",", $animals_name);</code></pre>
+<p>ではこれをビューに渡せるようにセットしておきましょう。</p>
+<pre class="prettyprint"><code>$this-&gt;set('animals_name_csv', $animals_name_csv);</code></pre>
+
+<h2>ビューの記述</h2>
+<p>ここではデータを JavaScript にテンプレートなどに追記することをまとめます。</p>
+<p>以下のように DOM 属性にデータを書き込むように記述することで、JavaScript からデータにアクセスできるようにします。</p>
+<pre class="prettyprint"><code>&lt;div type="hidden"
+     id="animals-name-csv"
+     style="display:none;"
+     data-val="&lt;?=htmlspecialchars($animals_name_csv, ENT_QUOTES, 'UTF-8')?&gt;"&gt;&lt;/div&gt;</code></pre>
+<p>また、その下にデータを受け取りたい JavaScript のソースを埋め込んでおきます。</p>
+<pre class="prettyprint"><code>&lt;script type="text/javascript" src="script.js"&gt;&lt;/script&gt;</code></pre>
+
+<h2>JavaScript の記述</h2>
+<p>JavaScript では以下のようにして DOM属性にアクセスし、データを得ることができます。</p>
+<pre class="prettyprint"><code>var animalsNameCsv = document.getElementById('animals-name-csv').data('val');</code></pre>
+<p>さきほどデータをカンマ区切りにして渡しているので、以下のようにして配列に変換します。</p>
+<pre class="prettyprint"><code>var animalsName = animalsNameCsv.split(",");</code></pre>
+<p>ちゃんと値を取得できているかどうかは、以下のようにコンソールにログを出してみると確認できます。</p>
+<pre class="prettyprint"><code>for(var i=0; i&lt;animalsName.length; i++){
+  console.log(animalsName[i]);
+}</code></pre>
+
+<h2>参考</h2>
+<ul>
+<li><a href="http://agn.jp/blog/?p=2019">PHPからJavaScriptへの変数渡し &#8211; AGN Web team</a></li>
+<li><a href="https://teratail.com/questions/2133">外部のJavascriptファイルからPHPの変数にアクセスする方法｜teratail</a></li>
+</ul>
+
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="5584717331"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+
+<ul style="list-style-type:circle">
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2018 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
