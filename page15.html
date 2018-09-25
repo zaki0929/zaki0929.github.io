@@ -59,7 +59,7 @@
   &lt;input type="submit"&gt;
 &lt;/form&gt;</code></pre>
 <p>上のような入力フォームを FormHelper を使ってつくるためには以下のようにかきます。</p>
-<pre class="prettyprint"><code>&lt;?=$this-&gt;Form-&gt;create(null, ['url' =&gt; [controller' =&gt; 'Hello', 'action' =&gt; 'index'], 'type' =&gt; 'post'])?&gt;
+<pre class="prettyprint"><code>&lt;?=$this-&gt;Form-&gt;create(null, ['url' =&gt; ['controller' =&gt; 'Hello', 'action' =&gt; 'index'], 'type' =&gt; 'post'])?&gt;
 &lt;?=$this-&gt;Form-&gt;input('msg');?&gt;
 &lt;?=$this-&gt;Form-&gt;submit('送信')?&gt;
 &lt;?=$this-&gt;Form-&gt;end()?&gt;</code></pre>
