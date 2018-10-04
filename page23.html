@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="CakePHP,i18n,pot,po">
+<title>CakePHP3 の国際化と地域化機能をつかう | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6967324061031661",
+    enable_page_level_ads: true
+  });
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-126261673-1');
+</script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<script type="text/javascript" src="vimlike.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2018/10/04</h4>
+<h1>CakePHP3 の国際化と地域化機能をつかう</h1>
+
+<p>CakePHP3 で国際化と地域化機能 (英語から日本語) をつかう機会があったので、残しておきます。</p>
+ 
+<h2>環境</h2>
+<ul>
+  <li>CakePHP 3.6.10</li>
+</ul>
+
+<h2>国際化する文字列の指定</h2>
+<p>国際化したい文字列を __() で囲むことで指定ができます。</p>
+<p>例えば以下のようなビューの記述を国際化したいとすると。</p>
+<pre class="prettyprint"><code>&lt;h2&gt;Hello&lt;/h2&gt;</code></pre>
+<p>以下のように、__() で囲むことで指定ができます。</p>
+<pre class="prettyprint"><code>&lt;h2&gt;&lt;?= __('Hello') ?&gt;&lt;/h2&gt;</code></pre>
+
+
+<h2>デフォルトロケールの設定</h2>
+<p>デフォルトロケールは config/app.php ファイルの App.defaultLocale から設定できます。</p>
+<p>例えばデフォルトロケールを日本に設定するためには以下のようにします。</p>
+<pre class="prettyprint"><code>'App' =&gt; [
+    ...
+    'defaultLocale' =&gt; env('APP_DEFAULT_LOCALE', 'ja-JP'),
+    ...
+]</code></pre>
+
+<h2>POT ファイルの作成</h2>
+<p>次に、国際化のために POT ファイルというものを作ります。</p>
+<p>これは i18n コマンドを使うと作成できます。</p>
+<p>ルートディレクトリで以下のコマンドを入力してください。</p>
+<pre class="prettyprint"><code>bin/cake i18n extract</code></pre>
+<p>いろいろ聞かれると思いますが適宜答えてみてください。</p>
+<p>自分はエンターと y しか打っていません。</p>
+<p>終わると、src/Locale に default.pot というファイルが出力されているはずです。</p>
+<p>ファイルの中をエディタでみてみると、</p>
+<pre class="prettyprint"><code>#: Template/Hello/index.ctp:8
+msgid "Hello"
+msgstr ""</code></pre>
+<p>のような記述があると思います。</p>
+<p>この msgstr 欄に翻訳後の文字列を書き入れます。</p>
+<p>日本語にするなら以下のようにします。</p>
+<pre class="prettyprint"><code>#: Template/Hello/index.ctp:8
+msgid "Hello"
+msgstr "こんにちは"</code></pre>
+<p>しかし、このままでは反映されません。</p>
+<p>反映させるためには、以下のようにファイルをコピーし拡張子を pot から po に変えて src/Locale/ja に置く必要があります。</p>
+<pre class="prettyprint"><code>$ mkdir -p src/Locale/ja
+$ cp src/Locale/default.pot src/Locale/ja/default.po</code></pre>
+<p>すでに、default.po を作っている場合には差分をコピーして追記しましょう。</p>
+
+<h2>変更が反映されないときにやること</h2>
+<p>キャッシュが残っていると、変更が反映されないことがあります。</p>
+<p>それは tmp/cache/persistent/ にある cake_core_default_jpn などを削除することで解決できます。</p>
+
+<h2>参考</h2>
+<ul>
+<li><a href="https://book.cakephp.org/3.0/ja/core-libraries/internationalization-and-localization.html">国際化と地域化 - 3.6</a></li>
+<li><a href="https://norm-nois.com/blog/archives/3510">CakePHP3を触ってみました　〜ちょっとだけグローバル気分〜 | 日記の間 | あかつきのお宿</a></li>
+<li><a href="http://postoro.blogspot.com/2009/11/cakephp-po.html">POSTORO: CakePHPで poファイルの変更が反映されない場合の解決方法</a></li>
+</ul>
+
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="5584717331"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+
+<ul style="list-style-type:circle">
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2018 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
