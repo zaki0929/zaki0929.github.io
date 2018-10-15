@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="CakePHP,saveAll">
+<title>CakePHP3 で saveAll みたいなことをする | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6967324061031661",
+    enable_page_level_ads: true
+  });
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-126261673-1');
+</script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<script type="text/javascript" src="vimlike.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2018/10/15</h4>
+<h1>CakePHP3 で saveAll みたいなことをする</h1>
+
+<p>CakePHP3 では以前のバージョンにはあった saveAll はなくなっています。</p>
+<p>このページでは CakePHP3 で saveAll のように、複数レコードを一括で登録する方法をまとめます。</p>
+ 
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="8640896526"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+                                  
+<h2>環境</h2>
+<ul>
+<li>CakePHP 3.6.10</li>
+</ul>
+
+<h2>あまり良くない方法</h2>
+<p>さきに、あまり良くない方法を紹介します。</p>
+<p>この方法は処理が重く、多数のレコードを保存するのには向いていません。</p>
+<p>自分は最初この方法を使用していて、多数のレコードを扱うときにブラウザがクラッシュし辛い思いをしました。</p>
+<pre class="prettyprint"><code>foreach ($entities as $entity) {
+    $this-&gt;Maps-&gt;save($entity);
+}</code></pre>
+<p>もしこの方法を使っていて悩んでいたら次に紹介する方法を試してみてください。</p>
+
+<h2>良い方法</h2>
+<p>この方法はクエリビルダーをつかってクエリを作り、複数レコードの一括保存を実現する方法です。</p>
+<p>これは処理が軽いです。</p>
+<pre class="prettyprint"><code>$query = $this-&gt;Maps-&gt;query();
+$query-&gt;insert(['name', 'size', 'data']);
+foreach ($entities as $entity) {
+  $query-&gt;values($entity);
+}
+$query-&gt;execute();</code></pre>
+
+<h2>参考</h2>
+<ul>
+<li><a href="https://qiita.com/KeijiYONEDA/items/8c2f0e2a8f9cfbf08eeb">[PHP]CakePHP 3.x でも、複数行INSERTできるよ！ - Qiita</a></li>
+</ul>
+
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="5584717331"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+
+<ul style="list-style-type:circle">
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2018 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
