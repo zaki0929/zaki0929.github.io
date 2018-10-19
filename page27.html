@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="Meteor,ubuntu,install">
+<title>Meteor を Ubuntu 16.04 にインストールする | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6967324061031661",
+    enable_page_level_ads: true
+  });
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-126261673-1');
+</script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<script type="text/javascript" src="vimlike.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2018/10/19</h4>
+<h1>Meteor を Ubuntu 16.04 にインストールする</h1>
+
+<p>JavaScript のフルスタックフレームワークである、Meteor を使う機会があったのでインストールの方法とひな形の作成方法をのこしておきます。</p>
+ 
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="8640896526"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+                                  
+<h2>インストール</h2>
+<p>以下のように curl して実行するだけです。</p>
+<pre class="prettyprint"><code>$ curl https://install.meteor.com/ | sh</code></pre>
+<p>ちなみに OSX でも同じです。</p>
+
+<h2>ひな型の作成</h2>
+<p>以下のように meteor create コマンドを実行するとひな型を作成することができます。</p>
+<p>今回は、helloApp という名前でつくります。</p>
+<pre class="prettyprint"><code>$ meteor create helloApp</code></pre>
+
+<h2>サーバをたててみる</h2>
+<p>先ほどつくったひな形でサーバをたててみます。</p>
+<p>ひとまずひな形のルートディレクトリへ移動します。</p>
+<pre class="prettyprint"><code>$ cd helloApp</code></pre>
+<p>そこで、meteor コマンドをうつとサーバがたちます。</p>
+<pre class="prettyprint"><code>$ meteor</code></pre>
+<p>デフォルトでは、3000番ポートを使用するので、ブラウザで <a href="http://localhost:3000/">http://localhost:3000/</a> にアクセスすると確認できます。</p>
+
+<h2>参考</h2>
+<ul>
+<li><a href="https://linuxhostsupport.com/blog/how-to-install-configure-and-deploy-a-meteor-js-app-on-ubuntu-16-04/">How to Install, Configure and Deploy a Meteor.js App on Ubuntu 16.04 &#8211; LinuxHostSupport</a></li>
+</ul>
+
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="5584717331"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+
+<ul style="list-style-type:circle">
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2018 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
