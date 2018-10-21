@@ -1,3 +1,5 @@
 var menuElm = document.getElementsByClassName("fix");
 
-menuElm.style.height = window.innerHeight*0.8;
+window.onresize = function () {
+  menuElm.style.height = window.innerHeight*0.8;
+};
