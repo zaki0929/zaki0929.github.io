@@ -83,19 +83,19 @@ footer small  {margin-left: 30px;}
 
 .top          {width: 900px;}
 
-.articles     {width: 720px;
+.articles     {width: 730px;
               float: left;}
 
 .articles h2  {margin-top: 0;}
 
-.side         {width: 150px;
+.side         {width: 140px;
               float: right;}
 
 .wrap         {overflow: hidden;}
 
 .fix          {position: fixed;
-              width: 150px;
-              height: 270px;
+              width: 140px;
+              height: 320px;
               border-radius: 10px;
               overflow-y: scroll}
 
