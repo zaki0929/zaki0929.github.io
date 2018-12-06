@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="PCL,PCLVisualizer,cloud,multi">
+<title>PCL で複数の点群を色分けして描画する | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6967324061031661",
+    enable_page_level_ads: true
+  });
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-126261673-1');
+</script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<script type="text/javascript" src="vimlike.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2018/12/06</h4>
+<h1>PCL で複数の点群を色分けして描画する</h1>
+
+<p>PCL (Point Cloud Library) で複数の点群を色分けして描画する方法を紹介します。</p>
+ 
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="8640896526"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+
+<h2>関数をつくる</h2>
+<p>点群の描画のために、PCLVisualizer を使用します。</p>
+<p>今回は、3つの点群をそれぞれ赤緑青に着色するものを用意しました。</p>
+<pre class="prettyprint"><code>boost::shared_ptr&lt;pcl::visualization::PCLVisualizer&gt; threeCloudsVis (
+  pcl::PointCloud&lt;pcl::PointXYZ&gt;::ConstPtr cloud1,
+  pcl::PointCloud&lt;pcl::PointXYZ&gt;::ConstPtr cloud2,
+  pcl::PointCloud&lt;pcl::PointXYZ&gt;::ConstPtr cloud3)
+{
+  boost::shared_ptr&lt;pcl::visualization::PCLVisualizer&gt; viewer (new pcl::visualization::PCLVisualizer ("3D Viewer"));
+  viewer-&gt;setBackgroundColor (0, 0, 0);
+
+  // Red cloud
+  pcl::visualization::PointCloudColorHandlerCustom&lt;pcl::PointXYZ&gt; single_color1(cloud1, 255, 0, 0);
+  viewer-&gt;addPointCloud&lt;pcl::PointXYZ&gt; (cloud1, single_color1, "cloud1");
+  viewer-&gt;setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 3, "cloud1");
+
+  // Green cloud
+  pcl::visualization::PointCloudColorHandlerCustom&lt;pcl::PointXYZ&gt; single_color2(cloud2, 0, 255, 0);
+  viewer-&gt;addPointCloud&lt;pcl::PointXYZ&gt; (cloud2, single_color2, "cloud2");
+  viewer-&gt;setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 3, "cloud2");
+
+  // Blue cloud
+  pcl::visualization::PointCloudColorHandlerCustom&lt;pcl::PointXYZ&gt; single_color3(cloud3, 0, 0, 255);
+  viewer-&gt;addPointCloud&lt;pcl::PointXYZ&gt; (cloud3, single_color3, "cloud3");
+  viewer-&gt;setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 3, "cloud3");
+
+  viewer-&gt;addCoordinateSystem (1.0);
+  viewer-&gt;initCameraParameters ();
+  return viewer;
+}</code></pre>
+
+<h2>サンプルコード</h2>
+<p>上で紹介した関数を実際に使用したサンプルコードが以下になります。</p>
+<p>実行すると新たにウィンドウが立ち上がると思います。</p>
+<p>はじめは軸にズームインされている状態で起動しよく見えないと思いますが、ズームアウトすると点群が確認できると思います。</p>
+<pre class="prettyprint"><code>#include &lt;pcl/visualization/pcl_visualizer.h&gt;
+
+boost::shared_ptr&lt;pcl::visualization::PCLVisualizer&gt; threeCloudsVis (
+  pcl::PointCloud&lt;pcl::PointXYZ&gt;::ConstPtr cloud1,
+  pcl::PointCloud&lt;pcl::PointXYZ&gt;::ConstPtr cloud2,
+  pcl::PointCloud&lt;pcl::PointXYZ&gt;::ConstPtr cloud3)
+{
+  boost::shared_ptr&lt;pcl::visualization::PCLVisualizer&gt; viewer (new pcl::visualization::PCLVisualizer ("3D Viewer"));
+  viewer-&gt;setBackgroundColor (0, 0, 0);
+
+  // Red cloud
+  pcl::visualization::PointCloudColorHandlerCustom&lt;pcl::PointXYZ&gt; single_color1(cloud1, 255, 0, 0);
+  viewer-&gt;addPointCloud&lt;pcl::PointXYZ&gt; (cloud1, single_color, "cloud1");
+  viewer-&gt;setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 3, "cloud1");
+
+  // Green cloud
+  pcl::visualization::PointCloudColorHandlerCustom&lt;pcl::PointXYZ&gt; single_color2(cloud2, 0, 255, 0);
+  viewer-&gt;addPointCloud&lt;pcl::PointXYZ&gt; (cloud2, single_color2, "cloud2");
+  viewer-&gt;setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 3, "cloud2");
+
+  // Blue cloud
+  pcl::visualization::PointCloudColorHandlerCustom&lt;pcl::PointXYZ&gt; single_color3(cloud3, 0, 0, 255);
+  viewer-&gt;addPointCloud&lt;pcl::PointXYZ&gt; (cloud3, single_color3, "cloud3");
+  viewer-&gt;setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 3, "cloud3");
+
+  viewer-&gt;addCoordinateSystem (1.0);
+  viewer-&gt;initCameraParameters ();
+  return viewer;
+}
+
+pcl::PointCloud&lt;pcl::PointXYZ&gt;::Ptr fillInCloudRandomData (pcl::PointCloud&lt;pcl::PointXYZ&gt;::Ptr cloud)
+{
+  cloud-&gt;width    = 5;
+  cloud-&gt;height   = 1;
+  cloud-&gt;is_dense = false;
+  cloud-&gt;points.resize (cloud-&gt;width * cloud-&gt;height);
+  for (size_t i = 0; i &lt; cloud-&gt;points.size (); ++i)
+  {
+    cloud-&gt;points[i].x = 1024 * rand () / (RAND_MAX + 1.0f);
+    cloud-&gt;points[i].y = 1024 * rand () / (RAND_MAX + 1.0f);
+    cloud-&gt;points[i].z = 1024 * rand () / (RAND_MAX + 1.0f);
+  }
+  return cloud;
+}
+
+int main (int argc, char** argv)
+{
+  // ランダムなデータを入れた点群を3つ用意
+  pcl::PointCloud&lt;pcl::PointXYZ&gt;::Ptr cloud1 (new pcl::PointCloud&lt;pcl::PointXYZ&gt;);
+  cloud1 = fillInCloudRandomData(cloud1);
+
+  pcl::PointCloud&lt;pcl::PointXYZ&gt;::Ptr cloud2 (new pcl::PointCloud&lt;pcl::PointXYZ&gt;);
+  cloud2 = fillInCloudRandomData(cloud2);
+
+  pcl::PointCloud&lt;pcl::PointXYZ&gt;::Ptr cloud3 (new pcl::PointCloud&lt;pcl::PointXYZ&gt;);
+  cloud3 = fillInCloudRandomData(cloud3);
+
+
+  // 点群の可視化
+  boost::shared_ptr&lt;pcl::visualization::PCLVisualizer&gt; viewer;
+  viewer = threeCloudsVis(cloud1, cloud2, cloud3);
+  while (!viewer-&gt;wasStopped())
+  {
+    viewer-&gt;spinOnce (100);
+    boost::this_thread::sleep (boost::posix_time::microseconds (100000));
+  }
+}</code></pre>
+
+<h2>参考</h2>
+<ul>
+<li><a href="http://pointclouds.org/documentation/tutorials/pcl_visualizer.php">PCLVisualizer &#8212; PCL 0.0 documentation</a></li>
+</ul>
+
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="5584717331"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+
+<ul style="list-style-type:circle">
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2018 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
