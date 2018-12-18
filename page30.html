@@ -45,12 +45,12 @@
 <h2>方法</h2>
 <p>以下の関数を .bashrc に記述します。</p>
 <pre class="prettyprint"><code>function get_branch {
-    git branch --no-color 2&gt; /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
+    git branch --no-color 2&gt; /dev/null | sed -e '/^[^*]/d' -e 's/* &#x5c;(.*&#x5c;)/ [&#x5c;1]/'
 }</code></pre>
 <p>関数を定義したら $(get_branch) でブランチ名を取得することができます。</p>
 <p>同じ .bashrc 内の PS1 に組み込んであげましょう。</p>
 <p>個人的には PS1 の先頭に以下のようなものを追記し、改行して表示するのが好きです。</p>
-<pre class="prettyprint"><code>\e[1;34m$(get_branch)\n</code></pre>
+<pre class="prettyprint"><code>&#x5c;e[1;34m$(get_branch)&#x5c;n</code></pre>
 
 <h2>参考</h2>
 <ul>
