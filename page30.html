@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="bash,prompt,git,branch">
+<title>Bash のプロンプトにブランチ名を表示する | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6967324061031661",
+    enable_page_level_ads: true
+  });
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-126261673-1');
+</script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<script type="text/javascript" src="vimlike.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2018/12/18</h4>
+<h1>Bash のプロンプトにブランチ名を表示する</h1>
+
+<p>Bash のプロンプトにブランチ名を表示する方法をたびたび調べてるのでここにメモします。</p>
+ 
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="8640896526"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+                                  
+<h2>方法</h2>
+<p>以下の関数を .bashrc に記述します。</p>
+<pre class="prettyprint"><code>function get_branch {
+    git branch --no-color 2&gt; /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
+}</code></pre>
+<p>関数を定義したら $(get_branch) でブランチ名を取得することができます。</p>
+<p>同じ .bashrc 内の PS1 に組み込んであげましょう。</p>
+<p>個人的には PS1 の先頭に以下のようなものを追記し、改行して表示するのが好きです。</p>
+<pre class="prettyprint"><code>\e[1;34m$(get_branch)\n</code></pre>
+
+<h2>参考</h2>
+<ul>
+<li><a href="https://qiita.com/caad1229/items/6d71d84933c8a87af0c4">プロンプトをカスタマイズしてgitブランチを表示する - Qiita</a></li>
+</ul>
+
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="5584717331"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+
+<ul style="list-style-type:circle">
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2018 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
