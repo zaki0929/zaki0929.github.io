@@ -105,3 +105,55 @@ footer small  {margin-left: 30px;}
 .fix article  {margin-bottom: 0;
               padding-top: 10px;
               padding-bottom: 10px;}              
+
+.hide        {display: none;}
+
+.accordion_icon {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    float: right;
+    margin-right: 5px;
+}
+.accordion_icon div {
+    display: inline;
+}
+.accordion_icon span {
+    position: absolute;
+    left: 6px;
+    width: 70%;
+    height: 5px;
+    background-color: orange;
+}
+.accordion_icon span:nth-of-type(1) {
+    top: 8px;
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+}
+.accordion_icon span:nth-of-type(2) {
+    top: 8px;
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+}
+.accordion_icon.active span:nth-of-type(1) {
+    top: 8px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+}
+.accordion_icon.active span:nth-of-type(2) {
+    top: 8px;
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -ms-transform: rotate(135deg);
+    -o-transform: rotate(135deg);
+}
