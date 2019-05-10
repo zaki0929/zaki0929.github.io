@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="LaTeX,Tex,commas">
+<title>LaTeX で Too many commas といわれた | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6967324061031661",
+    enable_page_level_ads: true
+  });
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-126261673-1');
+</script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<script type="text/javascript" src="vimlike.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2019/05/10</h4>
+<h1>LaTeX で Too many commas といわれた</h1>
+
+<p>LaTeX を使っていて Too many commas とエラーが出たので、その解決法をメモしておきます。</p>
+ 
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="8640896526"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+
+<h2>方法</h2>
+<p>LaTeX の bibfile で名前などを複数入力するとき、以下のような表記はエラーが出ます。</p>
+<pre class="prettyprint"><code>A, B, C and D</code></pre>
+<p>以下のようにコンマを使わずに、and で繋げてあげると、このエラーは解決します。</p>
+<pre class="prettyprint"><code>A and B and C and D</code></pre>
+<p>エラーメッセージでは、直訳でコンマが多いよ！と言っているので納得です。</p>
+
+<h2>参考</h2>
+<ul>
+<li><a href="https://tex.stackexchange.com/questions/343163/error-in-bib-entry-too-many-commas">bibliographies - Error in .bib entry, &quot;Too many commas&quot; - TeX - LaTeX Stack Exchange</a></li>
+</ul>
+
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="5584717331"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+
+<ul style="list-style-type:circle">
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2019 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
