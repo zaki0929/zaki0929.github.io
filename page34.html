@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="math,intersection">
+<title>点が線分上にあるかどうかを判定する | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6967324061031661",
+    enable_page_level_ads: true
+  });
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-126261673-1');
+</script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<script type="text/javascript" src="vimlike.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2019/05/22</h4>
+<h1>点が線分上にあるかどうかを判定する</h1>
+
+<p>点が線分上にあるかどうかを判定する方法をメモしておきます。</p>
+ 
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="8640896526"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+
+<h2>方法</h2>
+<p>点Pが線分AB上にあるかどうかは以下のように算出できます。</p>
+<pre class="prettyprint"><code>
+if((A.x &lt;= P.x &amp;&amp; P.x &lt;= B.x) || (B.x &lt;= P.x &amp;&amp; P.x &lt;= A.x)){
+    if((A.y &lt;= P.y &amp;&amp; P.y &lt;= B.y) || (B.y &lt;= P.y &amp;&amp; P.y &lt;= A.y)){
+        if(P.y*(A.x - B.x) + A.y*(B.x - P.x) + B.y*(P.x - A.x) == 0){
+            // 点Pが線分AB上にある
+            return true;
+        }
+    }
+}
+// 点Pが線分AB上にない
+return false;
+</code></pre>
+
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="5584717331"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+
+<ul style="list-style-type:circle">
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2019 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
