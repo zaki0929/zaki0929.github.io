@@ -45,9 +45,9 @@
 <h2>方法</h2>
 <p>点Pが線分AB上にあるかどうかは以下のように算出できます。</p>
 <pre class="prettyprint"><code>
-if((A.x &lt;= P.x &amp;&amp; P.x &lt;= B.x) || (B.x &lt;= P.x &amp;&amp; P.x &lt;= A.x)){
-    if((A.y &lt;= P.y &amp;&amp; P.y &lt;= B.y) || (B.y &lt;= P.y &amp;&amp; P.y &lt;= A.y)){
-        if(P.y*(A.x - B.x) + A.y*(B.x - P.x) + B.y*(P.x - A.x) == 0){
+if ((A.x &lt;= P.x &amp;&amp; P.x &lt;= B.x) || (B.x &lt;= P.x &amp;&amp; P.x &lt;= A.x)) {
+    if ((A.y &lt;= P.y &amp;&amp; P.y &lt;= B.y) || (B.y &lt;= P.y &amp;&amp; P.y &lt;= A.y)) {
+        if ((P.y * (A.x - B.x)) + (A.y * (B.x - P.x)) + (B.y * (P.x - A.x)) == 0) {
             // 点Pが線分AB上にある
             return true;
         }
