@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="CakePHP,form,button,id">
+<title>CakePHP3 でフォームのボタンに ID をつけたい | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6967324061031661",
+    enable_page_level_ads: true
+  });
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-126261673-1');
+</script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<script type="text/javascript" src="vimlike.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2019/06/21</h4>
+<h1>CakePHP3 でフォームのボタンに ID をつけたい</h1>
+
+<p>CakePHP3 でフォームのボタンに ID をつけたい機会があったので、その方法を書き残しておきます。</p>
+ 
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="8640896526"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+                                  
+<h2>環境</h2>
+<ul>
+  <li>CakePHP 3.6.10</li>
+</ul>
+
+<h2>方法</h2>
+<p>以下のようなフォーマットで記述するとID をつけたボタンが作成できます。</p>
+<pre class="prettyprint"><code>$this-&gt;Form-&gt;button('text', ['id' =&gt; 'button-id'])</code></pre>
+<p>例えば、OK という文字を入れたボタンに submit-button という ID をもたせたいときは以下のように記述します。</p>
+<p>二行目の table_name には処理を行いたいテーブル名を入れて下さい。</p>
+<pre class="prettyprint"><code>$this-&gt;Form-&gt;button('OK', ['id' =&gt; 'submit-button'])</code></pre>
+
+<h2>参考</h2>
+<ul>
+<li><a href="https://stackoverflow.com/questions/37787337/tuncate-cakephp-3-x-table-and-reset-auto-incremented-id">Tuncate CakePHP 3.X table and reset Auto Incremented id - Stack Overflow</a></li>
+</ul>
+
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="5584717331"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+
+<ul style="list-style-type:circle">
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2019 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
