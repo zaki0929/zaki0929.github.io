@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="TouchDesigner,fragment,shader,td,input,color">
+<title>入力から色を取得する - TouchDesigner でフラグメントシェーダをかく | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6967324061031661",
+    enable_page_level_ads: true
+  });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-126261673-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-126261673-1');
+</script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<script type="text/javascript" src="vimlike.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2019/07/08</h4>
+<h1>入力から色を取得する - TouchDesigner でフラグメントシェーダをかく</h1>
+
+<p>最近 TouchDesigner でシェーダを書き始めました。</p>
+<p>フラグメントシェーダを書いてフィルタを作ろうとしたときに、入力から色を取得する必要があったので、その方法をメモしておきます。</p>
+ 
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="8640896526"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+                                  
+<h2>環境</h2>
+<ul>
+  <li>TouchDesigner 2018.27910</li>
+</ul>
+
+<h2>方法</h2>
+<p>以下のメソッドを通して色を取得できます。</p>
+<pre class="prettyprint"><code>texture(sTD2DInputs[0], vUV.st);</code></pre>
+<p>sTD2DInputs[0] は GLSL TOP につないでいる一つ目の入力を示しています。</p>
+<p>なので sTD2DInputs[0] を sTD2DInputs[1] とすれば GLSL TOP につないでいる二つ目の入力を取得できます。</p>
+<p>また返り値は vec4 型なので以下のようにすると値を格納できます。</p>
+<pre class="prettyprint"><code>vec4 color = texture(sTD2DInputs[0], vUV.st);</code></pre>
+
+<h2>参考</h2>
+<ul>
+<li><a href="https://docs.derivative.ca/Write_a_GLSL_TOP">Write a GLSL TOP - Derivative</a></li>
+</ul>
+
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="5584717331"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+
+<ul style="list-style-type:circle">
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2019 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
