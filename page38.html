@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="usdz,obj,convert,xcode,xcrun,usdz_converter,convert,texture">
+<title>obj を usdz に変換するメモ | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6967324061031661",
+    enable_page_level_ads: true
+  });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-126261673-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-126261673-1');
+</script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<script type="text/javascript" src="vimlike.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2019/08/22</h4>
+<h1>obj を usdz に変換するメモ</h1>
+
+<p>このページには、3Dモデルのファイルフォーマットである obj 形式から、usdz形式へ変換する方法をメモしています。</p>
+ 
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="8640896526"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+                                  
+<h2>環境</h2>
+<ul>
+  <li>macOS Mojave</li>
+  <li>Xcode Version 10.3 (usdz_converter Version: 1.009)</li>
+</ul>
+
+<h2>方法</h2>
+<p>そのまま変換</p>
+<pre class="prettyprint"><code>$ xcrun usdz_converter sample.obj sample.usdz</code></pre>
+<p>テクスチャを貼って変換</p>
+<pre class="prettyprint"><code>$ xcrun usdz_converter sample.obj sample.usdz -color_map texture.png</code></pre>
+
+<h2>テクスチャを貼ったけど、色が暗いなと感じる場合</h2>
+<p>デフォルトの変換ではメタリック値が高く、色が暗く見えてしまいます。</p>
+<p>なので、メタリック値を下げてみましょう。</p>
+<p>以下のような真っ黒のテクスチャを作り、それを引数に加えることで、メタリック値を0と指定できます。</p>
+<img src="images/page38.png">
+<pre class="prettyprint"><code>$ xcrun usdz_converter cube.obj cube.usdz -color_map texture.png -metallic_map black.png</code></pre>
+
+<h2>その他のオプション</h2>
+<p>以下のヘルプオプションをつけることで、その他のオプションを確認できます。</p>
+<pre class="prettyprint"><code>$ xcrun usdz_converter -h</code></pre>
+<p>以下、抜粋です。</p>
+<pre class="prettyprint"><code>USAGE:
+&lt;inFilePath&gt; &lt;outFilePath&gt; [options...]
+	Options:
+                -g groupName [groupNames ...]       Apply subsequent material properties to the named group(s).
+                -m materialName [materialNames ...] Apply subsequent material properties to the named material(s).
+                -h                                  Display help.
+                -a                                  Generate a .usda intermediate file.  Default is .usdc.
+                -l                                  Leave the intermediate .usd file in the source folder.
+                -v                                  Verbose output.
+                -f                    filePath      Read commands from a file.
+                -texCoordSet          set           The name of the texturemap coordinate set to use if multiple exist (no quotes).
+                -opacity              o             Floating point value 0.0 ... 1.0
+                -color_map            filePath
+                -normal_map           filePath
+                -emissive_map         filePath
+                -metallic_map         filePath
+                -roughness_map        filePath
+                -ao_map               filePath
+                -color_default        r g b a        Floating point values 0.0 ... 1.0
+                -normal_default       r g b a
+                -emissive_default     r g b a
+                -metallic_default     r g b a
+                -roughness_default    r g b a
+                -ao_default           r g b a
+
+(*) Specify infield only with -v (Verbose) to display group information.
+(*) '#' in the first character position of a line in a command file interprets the line as a comment.</code></pre>
+
+<h2>参考</h2>
+<ul>
+<li><a href="https://forums.developer.apple.com/thread/107094">Let's discuss USDZ Converter in details... |Apple Developer Forums</a></li>
+</ul>
+
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="5584717331"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+
+<ul style="list-style-type:circle">
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2019 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
