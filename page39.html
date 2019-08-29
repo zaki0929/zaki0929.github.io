@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="ARKit,AR,feature,points,ShowFeaturePoints,Xcode,debug">
+<title>ARKit で特徴点を表示する | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6967324061031661",
+    enable_page_level_ads: true
+  });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-126261673-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-126261673-1');
+</script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<script type="text/javascript" src="vimlike.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2019/08/30</h4>
+<h1>ARKit で特徴点を表示する</h1>
+
+<p>このページには、ARKit で AR アプリを作るときに、特徴点を表示する方法をメモしています。</p>
+<p>特徴点を表示してみると、その環境が ARKit にとって得意か不得意かなどの判断に役立ちます。</p>
+ 
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="8640896526"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+
+<h2>方法</h2>
+<p>以下を ViewController::viewDidLoad() などに追記する。</p>
+<pre class="prettyprint"><code>sceneView.debugOptions = ARSCNDebugOptions.showFeaturePoints</code></pre>
+<p>ViewController クラスは、プロジェクト作成時に "Augumented Reality App" という AR 用のテンプレートを選択すると ViewController.swift 内に実装されています。</p>
+<p>特徴点の表示は SceneKit のデバッグオプションの一つです。</p>
+<p>その他のデバッグオプションは<a href="https://developer.apple.com/documentation/scenekit/scndebugoptions">コチラ</a>にまとまっています。</p>
+
+<h2>参考</h2>
+<ul>
+<li><a href="https://developer.apple.com/documentation/scenekit/scndebugoptions/2882038-showfeaturepoints">showFeaturePoints - SCNDebugOptions | Apple Developer Documentation</a></li>
+</ul>
+
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="5584717331"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+
+<ul style="list-style-type:circle">
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2019 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
