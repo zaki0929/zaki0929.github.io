@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="linux,mac,date,unix,time,unixtime">
+<title>シェルから仮想通貨のレートを取得する | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6967324061031661",
+    enable_page_level_ads: true
+  });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-126261673-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-126261673-1');
+</script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<script type="text/javascript" src="vimlike.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2019/12/23</h4>
+<h1>シェルから仮想通貨のレートを取得する</h1>
+
+<p>仮想通貨のレートを取得するシェルをメモしておきます。</p>
+<p>シェルで、仮想通貨の取引所である<a href="https://coincheck.com/">Coincheck</a> の API を叩きます。</p>
+ 
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="8640896526"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+
+<h2>方法</h2>
+<p>Coincheck から提供されている API は<a href="https://coincheck.com/ja/documents/exchange/api">ここ</a>にまとめられています。</p>
+<p>その中から、今回は以下の API を叩きます。</p>
+<pre class="prettyprint"><code>GET /api/rate/[pair]</code></pre>
+<p>[pair] には通貨のペアを入れます。</p>
+<p>ビットコインなら "btc_jpy", ファクトムなら "fct_jpy" という具合です。</p>
+<p>では、この API を curl コマンドで叩いてみます。</p>
+<pre class="prettyprint"><code>$ curl https://coincheck.com/api/rate/btc_jpy</code></pre>
+<p>以下のような JSON が返ってくると思います。</p>
+<pre class="prettyprint"><code>{"rate":"829843.5"}</code></pre>
+<p>レートが取得できました。</p>
+<p>JSON のままではなくレートの値だけを取得したいという場合は <a href="https://stedolan.github.io/jq/">jq</a> コマンドが便利です。</p>
+<p>jq コマンドは JSON を簡単に扱うための便利なコマンドです。</p>
+<p>では、curl コマンドと jq コマンドを組み合わせて使ってみます。</p>
+<pre class="prettyprint"><code>$ curl -s https://coincheck.com/api/rate/btc_jpy | jq -r '.rate'</code></pre>
+<p>以下のように、レートの値だけ取得できていると思います。</p>
+<pre class="prettyprint"><code>829843.5</code></pre>
+
+<h2>まとめ</h2>
+<p>ビットコインのレートを取得</p>
+<pre class="prettyprint"><code>$ curl -s https://coincheck.com/api/rate/btc_jpy | jq -r '.rate'</code></pre>
+<p>ファクトムのレートを取得</p>
+<pre class="prettyprint"><code>$ curl -s https://coincheck.com/api/rate/fct_jpy | jq -r '.rate'</code></pre>
+
+<h2>参考</h2>
+<ul>
+<li><a href="https://coincheck.com/ja/documents/exchange/api">取引所APIドキュメント | 仮想通貨取引所のCoincheck（コインチェック）</a></li>
+<li><a href="view-source:https://jsapachehtml.hatenablog.com/entry/2014/12/11/224832">シェル上で簡単にjsonを扱う - MEMOcho-</a></li>
+</ul>
+
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="5584717331"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+
+<ul style="list-style-type:circle">
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2019 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
