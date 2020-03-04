@@ -55,13 +55,13 @@
 
 <h2>原因</h2>
 <p>繰り返し、Sprite を Create していたことが原因でした。</p>
-<p>私の場合は、以下のような Texture2D を Sprite に変換している処理を Monobehavior::Update() に記述していたことでメモリリークを起こしていました。</p>
+<p>私の場合は、以下のような Texture2D を Sprite に変換している処理を Monobehaviour::Update() に記述していたことでメモリリークを起こしていました。</p>
 <pre class="prettyprint"><code>Sprite sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
 this.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = sprite;</code></pre>
 
 <h2>解決方法</h2>
 <p>不要な Sprite の Create を避けることで、メモリリークは回避できます。</p>
-<p>私の場合は、上記の処理を Monobehavior::Start() 内などに移動し、一回のみの実行にすることでメモリリークを回避しました。</p>
+<p>私の場合は、上記の処理を一回のみの実行にする (Monobehaviour::Start() 内などに移動する) ことでメモリリークを回避しました。</p>
 
 <h2>まとめ</h2>
 <p>不要な Sprite の Create は、メモリリークにつながる恐れがある。</p>
