@@ -62,6 +62,8 @@ this.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = sprite;</code
 <h2>解決方法</h2>
 <p>不要な Sprite の Create を避けることで、メモリリークは回避できます。</p>
 <p>私の場合は、上記の処理を一回のみの実行にする (Monobehaviour::Start() 内などに移動する) ことでメモリリークを回避しました。</p>
+<p>また動的に複数 Sprite を生成する場合は、不要になったタイミングで以下のように Destroy することでメモリリークを回避できます。</p>
+<pre class="prettyprint"><code>Destroy(sprite);</code></pre>
 
 <h2>まとめ</h2>
 <p>不要な Sprite の Create は、メモリリークにつながる恐れがある。</p>
