@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="Unity,Label,Color,Editor">
+<title>Label に色をつける - Unity エディタ拡張 | ざきのメモ</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6967324061031661",
+    enable_page_level_ads: true
+  });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-126261673-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-126261673-1');
+</script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<script type="text/javascript" src="vimlike.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1><a href="index.html">ざきのメモ</a></h1>
+</header>
+
+<div class="main">
+<article>
+<h4>2020/3/20</h4>
+<h1>Label に色をつける - Unity エディタ拡張</h1>
+
+<p>Unity のエディタ拡張で、スタイルを崩すことなくラベルに色をつける方法をメモします。</p>
+ 
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="8640896526"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+
+<h2>使用環境</h2>
+<p>Unity 2019.2.13f1</p>
+
+<h2>手順</h2>
+<h3>1, 使用する変数の用意</h3>
+<p>スタイルを崩さないために、以下の変数をクラス内に用意します。</p>
+<pre class="prettyprint"><code>private bool isFirst = true;
+private Color defaultLabelColor;</code></pre>
+
+<p>次に、OnGUI() メソッド内などに以下を追記し, 使用スタイルの色を採取しておきます。</p>
+<pre class="prettyprint"><code>// 初回に, 使用スタイルのラベルの色を取得する
+if (isFirst) {
+    this.defaultLabelColor = GUI.skin.label.normal.textColor;
+}
+this.isFirst = false;</code></pre>
+
+<h3>2, 任意の色のラベルを描画するメソッドを用意</h3>
+<p>以下のメソッドをクラス内に用意します。</p>
+<p>標準のラベルも併用できるように、スタイルも復元しています。</p>
+<pre class="prettyprint"><code>// 任意の色のラベルを描画するメソッド
+private void colorLabel(string text, Color color) {
+    GUIStyle style = GUI.skin.label;
+    GUIStyleState styleState = new GUIStyleState();
+    styleState.textColor = color;
+    style.normal = styleState;
+
+    GUILayout.Label(text, style);
+
+    GUIStyleState styleState2 = new GUIStyleState();
+    styleState2.textColor = this.defaultLabelColor;
+    style.normal = styleState2;
+}</code></pre>
+
+<h3>3, 任意の色のラベルを描画</h3>
+<p>ラベルを置きたい箇所に以下のような記述をします。</p>
+<p>以下の例は、緑色で Hello と描画するものです。</p>
+<pre class="prettyprint"><code>// 緑色で Hello と書かれたラベル
+colorLabel("Hello", new Color(0.0f, 1.0f, 0.0f));</code></pre>
+
+<h2>まとめ</h2>
+<p>上記をまとめると, 以下のようになります。</p>
+<p>クラスに内に組み込むことで動作します。</p>
+<pre class="prettyprint"><code>private bool isFirst = true;
+private Color defaultLabelColor;
+
+void OnGUI() {
+    // 初回に, 使用スタイルのラベルの色を取得する
+    if (isFirst) {
+        this.defaultLabelColor = GUI.skin.label.normal.textColor;
+    }
+    this.isFirst = false;
+
+    // 緑色で Hello と書かれたラベル
+    colorLabel("Hello", new Color(0.0f, 1.0f, 0.0f));
+}
+
+// 任意の色のラベルを描画するメソッド
+private void colorLabel(string text, Color color) {
+    GUIStyle style = GUI.skin.label;
+    GUIStyleState styleState = new GUIStyleState();
+    styleState.textColor = color;
+    style.normal = styleState;
+
+    GUILayout.Label(text, style);
+
+    GUIStyleState styleState2 = new GUIStyleState();
+    styleState2.textColor = this.defaultLabelColor;
+    style.normal = styleState2;
+}</code></pre>
+
+<h2>参考</h2>
+<ul>
+<li><a href="http://gologius.hatenadiary.com/entry/2017/11/04/094006">【Unity エディタ拡張】 Labelの装飾 - gologiusの巣</a></li>
+</ul>
+
+<!-- BannerAd -->
+<div class="ad" align="center">
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-6967324061031661" data-ad-slot="5584717331"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- ad --></div>
+
+<ul style="list-style-type:circle">
+<li><a href="index.html">トップへもどる</a></li>
+</ul>
+</article>
+
+<footer>
+<small>Copyright &copy; 2017-2020 Ryo Okazaki, all rights reserved.</small>
+</footer>
+<!-- main --></div>
+<!-- wrap --></div>
+
+</body>
+</html>
