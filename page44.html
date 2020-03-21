@@ -48,11 +48,11 @@
 
 <h2>手順</h2>
 <h3>1, 使用する変数の用意</h3>
-<p>スタイルを崩さないために、以下の変数をクラス内に用意します。</p>
+<p>以下の変数をクラス内に用意します。</p>
 <pre class="prettyprint"><code>private bool isFirst = true;
 private Color defaultLabelColor;</code></pre>
 
-<p>次に、OnGUI() メソッド内などに以下を追記し, 使用スタイルの色を採取しておきます。</p>
+<p>次に、OnGUI() メソッド内などに以下を追記し, 使用スタイルの色を取得します。</p>
 <pre class="prettyprint"><code>// 初回に, 使用スタイルのラベルの色を取得する
 if (isFirst) {
     this.defaultLabelColor = GUI.skin.label.normal.textColor;
@@ -61,7 +61,7 @@ this.isFirst = false;</code></pre>
 
 <h3>2, 任意の色のラベルを描画するメソッドを用意</h3>
 <p>以下のメソッドをクラス内に用意します。</p>
-<p>標準のラベルも併用できるように、スタイルも復元しています。</p>
+<p>標準のラベルも併用できるように、スタイルを復元しています。</p>
 <pre class="prettyprint"><code>// 任意の色のラベルを描画するメソッド
 private void colorLabel(string text, Color color) {
     GUIStyle style = GUI.skin.label;
@@ -77,13 +77,13 @@ private void colorLabel(string text, Color color) {
 }</code></pre>
 
 <h3>3, 任意の色のラベルを描画</h3>
-<p>ラベルを置きたい箇所に以下のような記述をします。</p>
+<p>ラベルを置きたい箇所に以下の記述をします。</p>
 <p>以下の例は、緑色で Hello と描画するものです。</p>
 <pre class="prettyprint"><code>// 緑色で Hello と書かれたラベル
 colorLabel("Hello", new Color(0.0f, 1.0f, 0.0f));</code></pre>
 
 <h2>まとめ</h2>
-<p>上記をまとめると, 以下のようになります。</p>
+<p>上記をまとめると, 以下になります。</p>
 <p>クラスに内に組み込むことで動作します。</p>
 <pre class="prettyprint"><code>private bool isFirst = true;
 private Color defaultLabelColor;
