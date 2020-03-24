@@ -68,6 +68,12 @@
 <p>ファクトムのレートを取得</p>
 <pre class="prettyprint"><code>$ curl -s https://coincheck.com/api/rate/fct_jpy | jq -r '.rate'</code></pre>
 
+<h2>おまけ</h2>
+<p>ビットコインのレートを毎秒取得</p>
+<pre class="prettyprint"><code>$ while sleep 1; do curl -s https://coincheck.com/api/rate/btc_jpy | jq -r '.rate' ; done</code></pre>
+<p>ファクトムのレートを毎秒取得</p>
+<pre class="prettyprint"><code>$ while sleep 1; do curl -s https://coincheck.com/api/rate/fct_jpy | jq -r '.rate' ; done</code></pre>
+
 <h2>参考</h2>
 <ul>
 <li><a href="https://coincheck.com/ja/documents/exchange/api">取引所APIドキュメント | 仮想通貨取引所のCoincheck（コインチェック）</a></li>
