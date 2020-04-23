@@ -14,7 +14,7 @@ header h1     {width: 900px;
 
 article h1    {border-bottom: solid 5px orange;}
 
-h2            {margin-bottom: 6px;
+h2            {margin-bottom: 12px;
               font-size: 20px;
               background: #efefef;
               border-radius: 6px;
@@ -94,18 +94,18 @@ footer small  {margin-left: 30px;}
 
 .top          {width: 900px;}
 
-.articles     {width: 730px;
+.articles     {width: 720px;
               float: left;}
 
 .articles h2  {margin-top: 0;}
 
-.side         {width: 140px;
+.side         {width: 150px;
               float: right;}
 
 .wrap         {overflow: hidden;}
 
 .fix          {position: fixed;
-              width: 140px;
+              width: 150px;
               height: 320px;
               border-radius: 10px;}
 
