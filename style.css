@@ -7,6 +7,7 @@
 body          {font-family: 'メイリオ',
               'Hiragino Kaku Gothic Pro',
               sans-serif;
+              font-size: 16px;
               background: var(--bg-color);
               color: var(--letter-color);
               margin: 0;}
@@ -14,7 +15,8 @@ body          {font-family: 'メイリオ',
 h1            {margin-top: 0;
               margin-bottom: 0;}
 
-header h1     {width: 900px;
+header h1     {width: 80%;
+              max-width: 900px;
               margin-left: auto;
               margin-right: auto;}
 
@@ -85,7 +87,7 @@ article       {background-color: var(--bg-color);
               box-shadow:  3px 3px 8px var(--shadow-color), 
                            -3px -3px 8px var(--light-color);}
 
-footer        {width: 900px;
+footer        {width: 80%;
               float: left;
               margin-top: -25px;
               margin-bottom: 30px;
@@ -94,27 +96,29 @@ footer        {width: 900px;
 
 footer small  {margin-left: 30px;}
 
-.main         {width: 900px;
+.main         {width: 80%;
+              max-width: 900px;
               margin-left: auto;
               margin-right: auto;}
 
-.top          {width: 900px;}
+.top          {width: 100%;}
 
-.articles     {width: 720px;
+.articles     {width: 100%;
+              max-width: 900px;
               float: left;}
 
 .articles h2  {margin-top: 0;
               box-shadow:  3px 3px 8px var(--shadow-color), 
                            -3px -3px 8px var(--light-color);}
 
-.side         {width: 150px;
+.side         {width: 16%;
               float: right;}
 
 .wrap         {overflow: hidden;}
 
 .fix          {position: fixed;
-              width: 150px;
-              height: 320px;
+              width: 12.8%;
+              max-width: 144px;
               border-radius: 10px;}
 
 .fix h2       {margin-top: 10px;
