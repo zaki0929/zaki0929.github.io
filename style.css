@@ -1,8 +1,14 @@
+:root         {--letter-color: #595959;
+              --theme-color: orange;
+              --bg-color: #efefef;
+              --shadow-color: #c0c8c9;
+              --light-color: #ffffff;}
+
 body          {font-family: 'メイリオ',
               'Hiragino Kaku Gothic Pro',
               sans-serif;
-              background: #efefef;
-              color: #444;
+              background: var(--bg-color);
+              color: var(--letter-color);
               margin: 0;}
 
 h1            {margin-top: 0;
@@ -12,14 +18,14 @@ header h1     {width: 900px;
               margin-left: auto;
               margin-right: auto;}
 
-article h1    {border-bottom: solid 5px orange;}
+article h1    {border-bottom: solid 5px var(--theme-color);}
 
 h2            {margin-bottom: 12px;
               font-size: 20px;
-              background: #efefef;
+              background: var(--bg-color);
               border-radius: 6px;
-              box-shadow:  3px 3px 8px #c0c8c9, 
-                           -3px -3px 8px #ffffff; 
+              box-shadow:  3px 3px 8px var(--shadow-color), 
+                           -3px -3px 8px var(--light-color); 
               padding: 8px 16px;}
 
 h3            {font-size: 18px;}
@@ -50,7 +56,7 @@ code          {font-size: 16px;
               line-height: 1.5;
               margin-top: 0;}
 
-header        {background-color: #efefef;
+header        {background-color: var(--bg-color);
               padding: 10px;
               margin-bottom: 12px;}
 
@@ -59,15 +65,15 @@ header a      {text-decoration: none;
 
 article a      {text-decoration: none;}
 
-article a:link     {color: #444;}
-article a:visited  {color: #444;}
-article a:hover    {color: orange;}
+article a:link     {color: var(--letter-color);}
+article a:visited  {color: var(--letter-color);}
+article a:hover    {color: var(--theme-color);}
 
-header a:link     {color: #444;}
-header a:visited  {color: #444;}
-header a:hover    {color: #585858;}
+header a:link     {color: var(--letter-color);}
+header a:visited  {color: var(--letter-color);}
+header a:hover    {color: #777;}
 
-article       {background-color: #efefef;
+article       {background-color: var(--bg-color);
               margin-left: auto;
               margin-right: auto;
               margin-bottom: 30px;
@@ -76,8 +82,8 @@ article       {background-color: #efefef;
               padding-right: 30px;
               padding-top: 20px;
               padding-bottom: 20px;
-              box-shadow:  3px 3px 8px #c0c8c9, 
-                           -3px -3px 8px #ffffff;}
+              box-shadow:  3px 3px 8px var(--shadow-color), 
+                           -3px -3px 8px var(--light-color);}
 
 footer        {width: 900px;
               float: left;
@@ -97,7 +103,9 @@ footer small  {margin-left: 30px;}
 .articles     {width: 720px;
               float: left;}
 
-.articles h2  {margin-top: 0;}
+.articles h2  {margin-top: 0;
+              box-shadow:  3px 3px 8px var(--shadow-color), 
+                           -3px -3px 8px var(--light-color);}
 
 .side         {width: 150px;
               float: right;}
@@ -117,3 +125,6 @@ footer small  {margin-left: 30px;}
               padding-bottom: 10px;}              
 
 .hide        {display: none;}
+
+.push        {box-shadow: inset 3px 3px 8px var(--shadow-color), 
+                          inset -3px -3px 8px var(--light-color);}
